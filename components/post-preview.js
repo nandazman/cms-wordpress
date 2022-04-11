@@ -1,3 +1,4 @@
+import { useAmp } from "next/amp";
 import Link from 'next/link';
 import Avatar from '../components/avatar';
 import Date from '../components/date';
@@ -10,8 +11,8 @@ export default function PostPreview({
   excerpt,
   author,
   slug,
-  isAmp,
 }) {
+  const isAmp = useAmp();
   return (
     <div>
       <div className="mb-5">

@@ -1,8 +1,10 @@
 import cn from "classnames";
+import { useAmp } from "next/amp";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CoverImage({ title, coverImage, slug, isAmp }) {
+export default function CoverImage({ title, coverImage, slug }) {
+  const isAmp = useAmp();
   if (!coverImage) return <></>;
 
   const image = (
