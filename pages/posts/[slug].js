@@ -88,8 +88,6 @@ export async function getServerSideProps({
   preview = false,
   previewData,
 }) {
-  //   console.log({ params, preview, previewData }) }) {
-  console.log({ params, preview, previewData });
   const data = await getPostAndMorePosts(params.slug, preview, previewData);
   return {
     props: {
