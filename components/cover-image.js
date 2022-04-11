@@ -2,7 +2,7 @@ import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CoverImage({ title, coverImage, slug }) {
+export default function CoverImage({ title, coverImage, slug, isAmp }) {
   if (!coverImage) return <></>;
 
   const image = (
@@ -24,7 +24,18 @@ export default function CoverImage({ title, coverImage, slug }) {
           <a aria-label={title}>{image}</a>
         </Link>
       ) : (
-        image
+        <>
+          {isAmp ? (
+            <amp-img
+              width={678}
+              height={414}
+              src={coverImage?.node?.sourceUrl}
+              layout="responsive"
+            />
+          ) : (
+            image
+          )}
+        </>
       )}
     </div>
   );

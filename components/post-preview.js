@@ -1,7 +1,7 @@
-import Avatar from '../components/avatar'
-import Date from '../components/date'
-import CoverImage from './cover-image'
-import Link from 'next/link'
+import Link from 'next/link';
+import Avatar from '../components/avatar';
+import Date from '../components/date';
+import CoverImage from './cover-image';
 
 export default function PostPreview({
   title,
@@ -10,6 +10,7 @@ export default function PostPreview({
   excerpt,
   author,
   slug,
+  isAmp,
 }) {
   return (
     <div>
@@ -33,7 +34,7 @@ export default function PostPreview({
         className="text-lg leading-relaxed mb-4"
         dangerouslySetInnerHTML={{ __html: excerpt }}
       />
-      <Avatar author={author} />
+      <Avatar author={author} isAmp={isAmp} />
     </div>
-  )
+  );
 }

@@ -8,16 +8,24 @@ export default function Avatar(data) {
       : author.name
     : null;
 
+  console.log({data});
+  if (data.isAmp) return <></>
   return (
     <div className="flex items-center">
       <div className="w-12 h-12 relative mr-4">
         {author.avatar.url ? (
-          <Image
-            src={author.avatar.url}
-            layout="fill"
-            className="rounded-full"
-            alt={name}
-          />
+          <>
+            {data.isAmp ? (
+              <amp-img src={author.avatar.url} height="48" width="48" />
+            ) : (
+              <Image
+                src={author.avatar.url}
+                layout="fill"
+                className="rounded-full"
+                alt={name}
+              />
+            )}
+          </>
         ) : (
           <></>
         )}
