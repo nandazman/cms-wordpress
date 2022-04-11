@@ -129,3 +129,8 @@
   position: relative;
   height: 0;
 }
+
+.entry-content .wp-post-image {
+    margin-bottom: 10px;
+    width: 100%;
+}
