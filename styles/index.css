@@ -102,3 +102,9 @@
 .wp-block-media-text {
   @apply grid grid-cols-2 gap-4;
 }
+
+.elementor-cta__bg-wrapper, .elementor-cta__bg-wrapper > div:first-child {
+  position: relative;
+  min-height: 200px;
+  width: 100%;
+}
