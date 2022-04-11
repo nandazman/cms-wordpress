@@ -11,11 +11,13 @@ export default function CoverImage({ title, coverImage, slug }) {
       height={1000}
       alt={`Cover Image for ${title}`}
       src={coverImage?.node?.sourceUrl}
-      className={cn('shadow-small', {
-        'hover:shadow-medium transition-shadow duration-200': slug,
+      className={cn("shadow-small", {
+        "hover:shadow-medium transition-shadow duration-200": slug,
       })}
+      layout={"fill"}
+      objectFit={"contain"}
     />
-  )
+  );
   return (
     <div className="sm:mx-0">
       {slug ? (
