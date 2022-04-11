@@ -1,12 +1,12 @@
-import Image from 'next/image'
+import Image from 'next/image';
 
-export default function Avatar({ author }) {
+export default function Avatar(data) {
+  const author = data.author.node;
   const name = author
     ? author.firstName && author.lastName
       ? `${author.firstName} ${author.lastName}`
       : author.name
-    : null
-
+    : null;
   return (
     <div className="flex items-center">
       <div className="w-12 h-12 relative mr-4">
@@ -19,5 +19,5 @@ export default function Avatar({ author }) {
       </div>
       <div className="text-xl font-bold">{name}</div>
     </div>
-  )
+  );
 }
