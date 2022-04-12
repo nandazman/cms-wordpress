@@ -21,15 +21,18 @@ export default function PostBody({ content }) {
       if (!setting) continue;
 
       const parsedSetting = JSON.parse(setting);
-      console.log({ parsedSetting });
       const url = parsedSetting.youtube_url;
 
       if (!url) return;
       const splitUrl = url.split("/");
-      const videoId = splitUrl[splitUrl.length - 1];
-
+      let videoId = splitUrl[splitUrl.length - 1];
       if (!videoId) return;
-      videoElement.id = `youtube-player-${videoId}`;
+      if (videoId.includes("watch?v=")) {
+        const splittedId = videoId.split("=");
+        videoId = splittedId[splittedId.length - 1];
+        if (!videoId) continue;
+      }
+      container.id = `youtube-player-${videoId}`;
       videos.push(videoId);
     }
 
