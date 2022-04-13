@@ -58,6 +58,7 @@ export default function PostBody({ content }) {
     // If not, load the script asynchronously
     const tag = document.createElement("script");
     tag.src = "https://www.youtube.com/iframe_api";
+    tag.async = true;
 
     // onYouTubeIframeAPIReady will load the video after the script is loaded
     window.onYouTubeIframeAPIReady = () => loadVideo(ids);
