@@ -8,7 +8,6 @@ export default function PostBody({ content }) {
   const isAmp = useAmp();
   const player = {};
   useEffect(() => {
-    return;
     const videoContainer = document.querySelectorAll(".elementor-video");
     if (!videoContainer.length) {
       return;
@@ -56,16 +55,16 @@ export default function PostBody({ content }) {
   });
 
   const initYotube = (ids) => {
-    // If not, load the script asynchronously
-    const tag = document.createElement("script");
-    tag.src = "https://www.youtube.com/iframe_api";
-    tag.async = true;
+    // // If not, load the script asynchronously
+    // const tag = document.createElement("script");
+    // tag.src = "https://www.youtube.com/iframe_api";
+    // tag.async = true;
 
-    // onYouTubeIframeAPIReady will load the video after the script is loaded
-    window.onYouTubeIframeAPIReady = () => loadVideo(ids);
+    // // onYouTubeIframeAPIReady will load the video after the script is loaded
+    // window.onYouTubeIframeAPIReady = () => loadVideo(ids);
 
-    const firstScriptTag = document.getElementsByTagName("script")[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    // const firstScriptTag = document.getElementsByTagName("script")[0];
+    // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
   };
 
   const loadVideo = (ids) => {
