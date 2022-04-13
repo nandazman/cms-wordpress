@@ -1,5 +1,6 @@
 import parse from "html-react-parser";
 import { useAmp } from "next/amp";
+import Image from "next/image";
 import { useEffect } from "react";
 import styles from './post-body.module.css';
 
@@ -7,6 +8,7 @@ export default function PostBody({ content }) {
   const isAmp = useAmp();
   const player = {};
   useEffect(() => {
+    return;
     const videoContainer = document.querySelectorAll(".elementor-video");
     if (!videoContainer.length) {
       return;
@@ -88,7 +90,51 @@ export default function PostBody({ content }) {
   return (
     <div className="max-w-2xl mx-auto">
       <div className={styles.content}>
-        {parse(content)}
+        {parse(content, {
+          replace: (domNode) => {
+            const { attribs, children } = domNode;
+
+            if (!attribs) {
+              return;
+            }
+
+            if (attribs.class === "elementor-image") {
+              console.log({ domNode });
+              const childs = domNode.childNodes;
+              if (!childs) return;
+
+              let src = "";
+
+              for (let i = 0; i < childs.length; i++) {
+                const child = childs[i];
+                if (child.name !== "img") continue;
+                src = domNode.childNodes[i].attribs.src;   
+                if (!src) return;
+                
+                const alt = domNode.childNodes[i].attribs.alt;             
+                return (
+                  <div className="elementor-image">
+                    <Image
+                      src={src}
+                      alt={alt}
+                      width={domNode.childNodes[i].attribs.width}
+                      height={domNode.childNodes[i].attribs.height}
+                      layout="responsive"
+                    />
+                  </div>
+                );
+              }
+            }
+
+            if (attribs.class === "prettify") {
+              return (
+                <span style={{ color: "hotpink" }}>
+                  {domToReact(children, options)}
+                </span>
+              );
+            }
+          },
+        })}
       </div>
     </div>
   );
