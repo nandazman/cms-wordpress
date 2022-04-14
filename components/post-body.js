@@ -27,7 +27,7 @@ export default function PostBody({ content }) {
               return;
             }
             if (attribs.class === "elementor-cta__bg-wrapper") {
-              return <></>;
+              console.log({ domNode }, attribs.class);
             }
             if (attribs.style === "position:absolute; top:0; left:-9999px;") {
               return <></>;
