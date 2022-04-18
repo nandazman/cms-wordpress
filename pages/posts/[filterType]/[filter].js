@@ -1,0 +1,58 @@
+import ErrorPage from "next/error";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import Container from "../../../components/container";
+import Layout from "../../../components/layout";
+import MoreStories from "../../../components/more-stories";
+import { getAllPostsByFilter } from "../../../lib/api";
+import { CMS_NAME } from "../../../lib/constants";
+
+export default function Index({ allPosts: { edges } }) {
+  const router = useRouter();
+  const posts = edges;
+
+  if (!router.isFallback && !posts?.length) {
+    return <ErrorPage statusCode={404} />;
+  }
+
+  return (
+    <>
+      <Layout>
+        <Head>
+          <title>Next.js Blog Example with {CMS_NAME}</title>
+        </Head>
+        <Container>
+          <MoreStories posts={posts} />
+        </Container>
+      </Layout>
+    </>
+  );
+}
+
+// export async function getStaticProps({ preview = false }) {
+//   const allPosts = await getAllPostsForHome(preview)
+
+//   return {
+//     props: { allPosts, preview },
+//   }
+// }
+
+export async function getServerSideProps({ params }) {
+  const filterTypeMap = {
+    category: "categoryName",
+    tag: "tag",
+    author: "authorName"
+  };
+
+  const filterType = filterTypeMap[params.filterType];
+
+  if (!filterType) return { props: { allPosts: [] } }
+  const allPosts = await getAllPostsByFilter({
+    filterType,
+    filter: params.filter,
+  });
+  console.log({ allPosts });
+  return {
+    props: { allPosts },
+  };
+}
