@@ -22,7 +22,7 @@ export default function CoverImage({ title, coverImage, slug }) {
   return (
     <div className="sm:mx-0 mb-5" style={{ maxWidth: "672px", width: "100%" }}>
       {slug ? (
-        <Link href={`/posts/${slug}`}>
+        <Link href={`/post/${slug}`}>
           <a aria-label={title}>{image}</a>
         </Link>
       ) : (

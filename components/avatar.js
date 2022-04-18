@@ -1,5 +1,6 @@
 import { useAmp } from "next/amp";
 import Image from 'next/image';
+import Link from "next/link";
 
 export default function Avatar(data) {
   const isAmp = useAmp();
@@ -28,7 +29,11 @@ export default function Avatar(data) {
           <></>
         )}
       </div>
-      <div className="text-xl font-bold">{name}</div>
+      <div className="text-xl font-bold">
+        <Link href={`/posts/author/${author.slug}`}>
+          <a aria-label={name}>{name}</a>
+        </Link>
+      </div>
     </div>
   );
 }
