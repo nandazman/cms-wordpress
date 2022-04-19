@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Container from "../../../components/container";
 import Layout from "../../../components/layout";
-import MoreStories from "../../../components/more-stories";
+import PostLists from "../../../components/post-lists";
 import { getAllPostsByFilter } from "../../../lib/api";
 import { CMS_NAME } from "../../../lib/constants";
 
@@ -22,7 +22,7 @@ export default function Index({ allPosts: { edges } }) {
           <title>Next.js Blog Example with {CMS_NAME}</title>
         </Head>
         <Container>
-          <MoreStories posts={posts} />
+          <PostLists posts={posts} />
         </Container>
       </Layout>
     </>

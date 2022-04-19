@@ -1,4 +1,5 @@
 module.exports = {
+  pageExtensions: ["mdx", "md", "jsx", "js", "tsx", "ts"],
   images: {
     domains: [
       // "[yourapp].wpengine.com" (Update this to be your Wordpress application name in order to load images connected to your posts)
