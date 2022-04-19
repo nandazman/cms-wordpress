@@ -1,7 +1,7 @@
 import parse from "html-react-parser";
 import Image from "next/image";
 import PostBodyVideo from "./post-body-video";
-import styles from './post-body.module.css';
+import styles from './post-body.module.scss';
 
 
 export default function PostBody({ content }) {

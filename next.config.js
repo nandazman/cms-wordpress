@@ -5,6 +5,7 @@ module.exports = {
       "www.komunitasmea.web.id",
       "secure.gravatar.com",
       "i.ytimg.com",
+      "storage.googleapis.com",
     ],
   },
 };

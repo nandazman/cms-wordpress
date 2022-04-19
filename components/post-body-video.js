@@ -1,6 +1,6 @@
 import { useAmp } from "next/amp";
 import Image from "next/image";
-import styles from "./post-body-video.module.css";
+import styles from "./post-body-video.module.scss";
 
 export default function PostBodyVideo({ videoId }) {
   const isAmp = useAmp();

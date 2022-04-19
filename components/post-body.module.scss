@@ -1,5 +1,5 @@
 .content {
-  @apply text-lg leading-relaxed;
+  @apply text-medium leading-relaxed;
 }
 
 .content p,
@@ -36,15 +36,15 @@
 }
 
 .content h2 {
-  @apply text-3xl mt-12 mb-4 leading-snug;
+  @apply text-large mt-12 mb-4 leading-snug;
 }
 
 .content h3 {
-  @apply text-2xl mt-8 mb-4 leading-snug;
+  @apply text-large mt-8 mb-4 leading-snug;
 }
 
 .content h4 {
-  @apply text-xl mt-6 mb-4 leading-snug;
+  @apply text-large mt-6 mb-4 leading-snug;
 }
 
 .content pre {
@@ -52,11 +52,11 @@
 }
 
 .content code {
-  @apply text-sm;
+  @apply text-small;
 }
 
 .content figcaption {
-  @apply text-center text-sm;
+  @apply text-center text-small;
 }
 
 .content blockquote {
