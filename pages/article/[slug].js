@@ -63,28 +63,6 @@ export default function Post({ post, posts, preview }) {
   );
 }
 
-// export async function getStaticProps({ params, preview = false, previewData }) {
-//   console.log({ params, preview, previewData })
-//   const data = await getPostAndMorePosts(params.slug, preview, previewData)
-
-//   return {
-//     props: {
-//       preview,
-//       post: data.post,
-//       posts: data.posts,
-//     },
-//   }
-// }
-
-// export async function getStaticPaths() {
-//   const allPosts = await getAllPostsWithSlug()
-
-//   return {
-//     paths: allPosts.edges.map(({ node }) => `/posts/${node.slug}`) || [],
-//     fallback: true,
-//   }
-// }
-
 export async function getServerSideProps({
   params,
   preview = false,

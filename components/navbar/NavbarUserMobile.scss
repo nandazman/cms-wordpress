@@ -1,0 +1,172 @@
+.navbar-mobile {
+  height: 64px !important;
+  @media screen and (min-width: 991px) {
+    display: none !important;
+  }
+  & + .navbar-user-mobile {
+    position: fixed;
+    top: 0;
+    z-index: 9999;
+    width: 275px;
+    .navbar-account {
+      a, a:hover {
+        text-decoration: none;
+      }
+    }
+    .navbar-mobile-backdrop {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 999;
+      right: 0;
+      opacity: 0.3;
+      background: var(--black);
+    }
+    .navbar-mobile-wrapper {
+      @mixin border-sidebar {
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+        border-bottom: 0.5px solid var(--form-border-greyish-blue);
+      }
+
+
+      position: relative;
+      width: inherit;
+      background-color: var(--light-blue);
+      height: 100vh;
+      z-index: 1000;
+      display: flex;
+      overflow-x: hidden;
+
+      .navbar-mobile-container {
+        .navbar-account {
+          @include border-sidebar;
+        }
+        .navbar-mobile-logo {
+          text-align: center;
+          margin-bottom: 30px;
+        }
+        .navbar-mobile-main {
+          @include border-sidebar;
+          a {
+            &:hover {
+              text-decoration: none;
+            }
+            &:not(:last-child) {
+              .navbar-user-menu {
+                margin-bottom: 20px;
+              }
+            }
+            .navbar-user-menu {
+              display: flex;
+              align-items: center;
+              & > div {
+                flex: 0 0 30px;
+                display: flex;
+                justify-content: center;
+              }
+            }
+          }
+        }
+        .navbar-mobile-submenu {
+          @include border-sidebar;
+          .submenu-list {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 12.8px;
+            color: var(--white);
+            .submenu-icon {
+              svg {
+                transform: rotate(-90deg);
+              }
+            }
+          }
+        }
+      }
+      .navbar-mobile-submenu-detail, .navbar-mobile-container {
+        transition: all 0.25s;
+        padding: 25px;
+        flex: 0 0 275px;
+      }
+      &.navbar-mobile-sub-detail {
+        .navbar-mobile-container {
+          margin-left: -275px;
+        }
+      }
+
+      .navbar-mobile-submenu-detail {
+        .navbar-mobile-submenu-title {
+          display: flex;
+          align-items: center;
+          @include border-sidebar;
+          .submenu-icon {
+            margin-right: 16px;
+            cursor: pointer;
+            svg {
+              transform: rotate(90deg);
+            }
+          }
+          p {
+            font-weight: 600;
+            font-size: 12.8px;
+            color: var(--white);
+          }
+
+        }
+        .navbar-mobile-submenu-list {
+          a {
+            &:hover {
+              text-decoration: none;
+            }
+            .submenu-item {
+              font-weight: 600;
+              font-size: 12.8px;
+              color: var(--white);
+              margin-bottom: 20px;
+            }
+          }
+        }
+      }
+
+    }
+    .navbar-mobile-close {
+      position: absolute;
+      z-index: 2123413;
+      right: -35px;
+      top: 35px;
+      width: 20px;
+      height: 20px;
+      background-color: var(--white);
+      border-radius: 50%;
+      cursor: pointer;
+      &::before {
+        content: '';
+        position: absolute;
+        border-top: 2px solid black;
+        width: 15px;
+        transform: rotate(45deg);
+        top: 9px;
+        left: 2.5px;
+      }
+      &::after {
+        content: '';
+        position: absolute;
+        border-top: 2px solid black;
+        width: 15px;
+        transform: rotate(135deg);
+        top: 9px;
+        left: 2.5px;
+      }
+    }
+    @media screen and (min-width: 991px) {
+      display: none !important;
+    }
+  }
+}
+

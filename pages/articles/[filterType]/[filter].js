@@ -41,7 +41,8 @@ export async function getServerSideProps({ params }) {
   const filterTypeMap = {
     category: "categoryName",
     tag: "tag",
-    author: "authorName"
+    author: "authorName",
+    search: "search"
   };
 
   const filterType = filterTypeMap[params.filterType];
@@ -51,7 +52,7 @@ export async function getServerSideProps({ params }) {
     filterType,
     filter: params.filter,
   });
-  console.log({ allPosts });
+
   return {
     props: { allPosts },
   };
