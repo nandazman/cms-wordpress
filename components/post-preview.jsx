@@ -37,15 +37,16 @@ export default function PostPreview({
           ></a>
         </Link>
       </h3>
-      <div className="text-normal leading-relaxed mb-16px text-dark-grey">
+      <div className="text-normal leading-relaxed mb-16px text-dark-grey text-semi-normal">
         {parse(excerpt)}
       </div>
       <Link href={`/article/${slug}`}>
         <a className="text-black text-normal block mb-24px">
-          <span className="mr-16px">Baca Selengkapnya</span> <ChevronIcon />
+          <span className="mr-16px text-semi-normal">Baca Selengkapnya</span>{" "}
+          <ChevronIcon />
         </a>
       </Link>
-      <div className="flex text-small">
+      <div className="flex text-semi-normal">
         <p className="text-dark-grey mr-16px mb-0">
           <Date dateString={date} />
         </p>
