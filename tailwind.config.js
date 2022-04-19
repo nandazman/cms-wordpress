@@ -16,6 +16,8 @@ module.exports = {
         "16px": "16px",
         "24px": "24px",
         "30px": "30px",
+        "32px": "32px",
+        "50px": "50px",
       },
       fontFamily: {
         montserrat: ["Montserrat"],
@@ -36,7 +38,8 @@ module.exports = {
         pink: "#fbeadd",
         purple: "#555FAE",
         "light-grey": "#CCCCCC",
-        "dark-grey": "#4B4B50",
+        "dark-grey": "#4B,4B50",
+        orange: "#E87F2F",
       },
       spacing: {
         28: "7rem",

@@ -11,6 +11,7 @@ export default function PostPreview({
   excerpt,
   author,
   slug,
+  categories,
 }) {
   const postAuthor = author.node;
   const name = postAuthor
@@ -20,11 +21,14 @@ export default function PostPreview({
     : null;
   return (
     <div>
-      {coverImage && (
-        <div className="mb-5">
-          <CoverImage title={title} coverImage={coverImage} slug={slug} />
-        </div>
-      )}
+      <div className="mb-5">
+        <CoverImage
+          title={title}
+          coverImage={coverImage}
+          slug={slug}
+          categories={categories}
+        />
+      </div>
       <h3 className="text-3xl mb-3 leading-snug">
         <Link href={`/article/${slug}`}>
           <a

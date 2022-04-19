@@ -5,6 +5,7 @@ import Date from './date'
 import PostTitle from './post-title'
 
 export default function PostHeader({ title, coverImage, date, author, categories }) {
+  console.log({ categories}, "HEADER")
   return (
     <>
       <PostTitle>{title}</PostTitle>
@@ -12,7 +13,11 @@ export default function PostHeader({ title, coverImage, date, author, categories
         <Avatar author={author} />
       </div>
       <div className="max-w-2xl mx-auto">
-        <CoverImage title={title} coverImage={coverImage} />
+        <CoverImage
+          title={title}
+          coverImage={coverImage}
+          categories={categories}
+        />
       </div>
       <div className="max-w-2xl mx-auto">
         <div className="block md:hidden mb-6">
