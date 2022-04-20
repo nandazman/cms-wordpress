@@ -4,8 +4,8 @@ import { useRouter } from "next/router";
 import Container from "../../../components/container";
 import Layout from "../../../components/layout";
 import PostLists from "../../../components/post-lists";
-import { getAllPostsByFilter } from "../../../lib/api";
 import { CMS_NAME } from "../../../lib/constants";
+import { getAllPostsByFilter } from "../../../lib/wordpressAPI";
 
 export default function Index({ allPosts: { edges } }) {
   const router = useRouter();

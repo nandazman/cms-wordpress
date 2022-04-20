@@ -10,8 +10,8 @@ import PostLists from '../../../components/post-lists'
 import PostTitle from '../../../components/post-title'
 import SectionSeparator from '../../../components/section-separator'
 import Tags from '../../../components/tags'
-import { getPostAndMorePosts } from "../../../lib/api"
 import { CMS_NAME } from '../../../lib/constants'
+import { getPostAndMorePosts } from "../../../lib/wordpressAPI"
 
 export const config = {
   amp: true,
