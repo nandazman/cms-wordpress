@@ -184,10 +184,11 @@ export default function Footer() {
                 data-testid="footer-contact-wa"
                 id="contact-whatsapp"
               >
-                <img
+                <Image
                   alt="phone"
                   src="https://storage.googleapis.com/smarketing-prod/others/phone-icon.svg"
-                  className=""
+                  width={25}
+                  height={25}
                 />
                 <p className="ml-2 contact-description">+62 821-1793-2648</p>
               </div>
@@ -197,10 +198,11 @@ export default function Footer() {
                 id="location-map"
               >
                 <div className="flex align-items-start">
-                  <img
+                  <Image
                     alt="location"
                     src="https://storage.googleapis.com/smarketing-prod/others/location-icon.svg"
-                    className=""
+                    width={25}
+                    height={25}
                   />
                   <div className="flex flex-col ml-2">
                     <div className="font-bold">Head Office</div>
