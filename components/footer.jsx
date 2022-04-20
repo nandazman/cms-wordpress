@@ -1,4 +1,3 @@
-import Image from "next/image";
 import LinkToMea from "./linkToMea";
 
 export default function Footer() {
@@ -11,12 +10,13 @@ export default function Footer() {
         <div className="flex lg:flex-row flex-col columns-1 lg:columns-3 gap-x-10">
           <div className="w-full lg:mb-0 mb-30px">
             <div className="mb-[20px]">
-              <Image
+              {/* <Image
                 src="https://storage.googleapis.com/smarketing-prod/others/logo-rebrand-ch-2_04_small.png"
                 alt="logo"
                 width={250}
                 height={76.84}
-              />
+                layout="responsive"
+              /> */}
             </div>
             <p className="text-medium font-bold mb-[5px]">Media Sosial</p>
             <div className="flex gap-x-4 items-center">
@@ -184,12 +184,13 @@ export default function Footer() {
                 data-testid="footer-contact-wa"
                 id="contact-whatsapp"
               >
-                <Image
+                {/* <Image
                   alt="phone"
                   src="https://storage.googleapis.com/smarketing-prod/others/phone-icon.svg"
                   width={25}
                   height={25}
-                />
+                  layout="responsive"
+                /> */}
                 <p className="ml-2 contact-description">+62 821-1793-2648</p>
               </div>
               <div
@@ -198,12 +199,13 @@ export default function Footer() {
                 id="location-map"
               >
                 <div className="flex align-items-start">
-                  <Image
+                  {/* <Image
                     alt="location"
                     src="https://storage.googleapis.com/smarketing-prod/others/location-icon.svg"
                     width={25}
                     height={25}
-                  />
+                    layout="responsive"
+                  /> */}
                   <div className="flex flex-col ml-2">
                     <div className="font-bold">Head Office</div>
                     <div
