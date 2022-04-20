@@ -40,7 +40,7 @@ export default function Index({ allPosts: { edges, pageInfo }, preview }) {
         <Head>
           <title>Next.js Blog Example with {CMS_NAME}</title>
         </Head>
-        <Container className="mt-32px">
+        <Container className="mt-30px">
           <SearchInput className="mb-48px max-w-screen-md mx-auto" />
           <PostLists className="mb-50px" posts={posts} />
           <PaginationButtons
