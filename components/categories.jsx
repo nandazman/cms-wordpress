@@ -1,7 +1,20 @@
 export default function Categories({ categories }) {
+  const filterUncategorized = (categories) => {
+    if (categories?.edges?.length > 0) {
+      return categories.edges.filter(
+        (category) => category.node.name !== "Uncategorized"
+      );
+    }
+
+    const category = categories?.edges?.node?.name;
+    return category === "Uncategorized" ? "" : category;
+  };
+
+  const filteredCategories = filterUncategorized(categories);
+
   return (
     <span>
-      {categories?.edges?.length > 0 ? (
+      {filteredCategories.length > 0 ? (
         categories.edges.map((category, index) => (
           <span
             key={index}
@@ -11,9 +24,7 @@ export default function Categories({ categories }) {
           </span>
         ))
       ) : (
-        <span className="rounded-[5px] text-small text-white bg-orange px-3 py-2">
-          {categories?.edges?.node?.name}
-        </span>
+        <></>
       )}
     </span>
   );
