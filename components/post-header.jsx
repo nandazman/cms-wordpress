@@ -5,7 +5,6 @@ import Date from './date'
 import PostTitle from './post-title'
 
 export default function PostHeader({ title, coverImage, date, author, categories }) {
-  console.log({ categories}, "HEADER")
   return (
     <>
       <PostTitle>{title}</PostTitle>

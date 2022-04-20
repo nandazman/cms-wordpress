@@ -15,7 +15,6 @@ export default function Index({ allPosts: { edges } }) {
     return <ErrorPage statusCode={404} />;
   }
 
-  console.log({ posts });
   return (
     <>
       <Layout>
