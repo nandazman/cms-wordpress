@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import PostPreview from './post-preview';
 
-export default function PostList({ posts, className }) {
+function PostList({ posts, className }) {
   return (
     <section className={className || ""}>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-[37px] md:gap-x-[16px] lg:gap-y-[48px] gap-y-[30px]">
@@ -20,3 +21,5 @@ export default function PostList({ posts, className }) {
     </section>
   );
 }
+
+export default memo(PostList)

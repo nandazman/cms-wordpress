@@ -7,6 +7,7 @@ function PaginationButtons({
   pageInfo: { hasNextPage, hasPreviousPage, endCursor, startCursor },
   onClick
 }) {
+  console.log({ hasNextPage, hasPreviousPage, endCursor, startCursor });
   return (
     <div className={cn("flex gap-2 justify-center", className)}>
       <PaginationButton

@@ -1,4 +1,6 @@
-export default function ChevronIcon({ variant }) {
+import { memo } from "react";
+
+function ChevronIcon({ variant }) {
   if (variant === "rounded") {
     return (
       <svg
@@ -39,3 +41,5 @@ export default function ChevronIcon({ variant }) {
     </svg>
   );
 }
+
+export default memo(ChevronIcon)

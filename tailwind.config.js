@@ -10,12 +10,22 @@ module.exports = {
       lg: "992px",
       xl: "1200px",
     },
+    borderRadius: {
+      'none': '0',
+      'sm': '5px',
+      DEFAULT: '4px',
+      'md': '8px',
+      'lg': '10px',
+      'full': '9999px',
+      'large': '12px',
+    },
     extend: {
       margin: {
         "15px": "15px",
         "16px": "16px",
         "30px": "30px",
         "32px": "32px",
+        "48px": "48px",
         "50px": "50px",
       },
       fontFamily: {
@@ -39,6 +49,7 @@ module.exports = {
         "light-grey": "#CCCCCC",
         "dark-grey": "#4B,4B50",
         orange: "#E87F2F",
+        "greyish-blue": "#8692A6",
       },
       spacing: {
         28: "7rem",

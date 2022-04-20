@@ -18,7 +18,7 @@ export default function Categories({ categories }) {
         categories.edges.map((category, index) => (
           <span
             key={index}
-            className="rounded-[5px] text-small text-white bg-orange px-3 py-2"
+            className="rounded-sm text-small text-white bg-orange px-3 py-2"
           >
             {category.node.name}
           </span>
