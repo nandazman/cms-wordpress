@@ -1,20 +1,13 @@
 import Link from "next/link";
+import style from "./tags.module.scss";
 
 export default function Tags({ tags }) {
   return (
-    <div className="max-w-2xl mx-auto">
-      <p className="mt-8 text-lg font-bold">
-        Tagged
+    <div>
+      <p className={style.tags}>
         {tags.edges.map((tag, index) => (
-          <Link
-            key={index}
-            href={`/articles/tag/${tag.node.slug}`}
-            >
-            <a
-              className="ml-4 font-normal"
-            >
-              {tag.node.name}
-            </a>
+          <Link key={index} href={`/articles/tag/${tag.node.slug}`}>
+            <a className={style.item}>{tag.node.name}</a>
           </Link>
         ))}
       </p>

@@ -21,14 +21,18 @@ export default function CoverImage({ title, coverImage, slug, categories }) {
         height={414}
         layout="responsive"
       />
-      <div className="absolute bottom-5 left-2">
-        <Categories categories={categories} />
-      </div>
+      {categories ? (
+        <div className="absolute bottom-5 left-2">
+          <Categories categories={categories} />
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 
   return (
-    <div className="sm:mx-0 mb-16px" style={{ maxWidth: "672px", width: "100%" }}>
+    <div className="mb-30px w-full">
       {slug ? (
         <Link href={`/article/${slug}`}>
           <a aria-label={title}>{image}</a>

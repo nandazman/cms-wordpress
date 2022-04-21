@@ -1,0 +1,7 @@
+.share {
+  @apply flex gap-x-2 items-center mb-32px;
+  svg {
+    width: 45px;
+    height: 45px;
+  }
+}

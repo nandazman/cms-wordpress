@@ -1,0 +1,49 @@
+.elementor-cta {
+  margin-bottom: 20px;
+  .elementor-cta__content {
+    padding: 35px;
+    @apply text-center bg-orange text-black;
+    .elementor-cta__title {
+      @apply text-medium text-black mt-0 mb-20px;
+    }
+    & > div {
+      margin-bottom: 20px;
+      &.elementor-cta__description {
+        font-size: 1rem;
+      }
+    }
+    .elementor-cta__button-wrapper {
+      margin-bottom: 0;
+      a {
+        @apply border-2 border-black mt-3 py-3 px-6;
+        border-radius: 3px;
+      }
+    }
+  }
+
+  .elementor-cta__bg-wrapper {
+    width: auto;
+    min-width: 50%;
+    position: relative;
+    min-height: 200px;
+    z-index: 1;
+    overflow: hidden;
+    .elementor-cta__bg {
+      height: 100%;
+      background-size: cover;
+      background-position: 50%;
+      z-index: 1;
+    }
+  }
+  
+  .elementor-cta__bg, .elementor-cta__bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-transition: all .4s;
+    -o-transition: all .4s;
+    transition: all .4s;
+  }
+}

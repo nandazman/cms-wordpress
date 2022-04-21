@@ -1,0 +1,6 @@
+.tags {
+  @apply flex gap-3 flex-wrap;
+  .item {
+    @apply bg-disabled-form py-2.5 px-3 rounded-[15px];
+  }
+}

@@ -12,8 +12,8 @@ function NavbarUserMobileMenu({ onClose }) {
       <div className={style.wrapper}>
         <div className={style.container}>
           <div style={{ marginLeft: menu.subMenu?.length ? "-275px" : "" }}>
-            <div class={style.logo}>
-              <a class="navbar-brand m-0" href="/">
+            <div className={style.logo}>
+              <a className="navbar-brand m-0" href="/">
                 <img
                   width="120"
                   height="36.88"
@@ -22,14 +22,14 @@ function NavbarUserMobileMenu({ onClose }) {
                 />
               </a>
             </div>
-            <div class={style.menu}>
+            <div className={style.menu}>
               {NAVIGATION_MENU.map((item, index) => {
                 return (
-                  <div class={style.menuList} key={index}>
-                    <p class="mb-0" onClick={() => setMenu(item)}>
+                  <div className={style.menuList} key={index}>
+                    <p className="mb-0" onClick={() => setMenu(item)}>
                       {item.title}
                     </p>
-                    <div class={style.menuIcon}>
+                    <div className={style.menuIcon}>
                       <ChevronIcon />
                     </div>
                   </div>
@@ -39,12 +39,12 @@ function NavbarUserMobileMenu({ onClose }) {
           </div>
           {menu.subMenu?.length ? (
             <div style={{ marginLeft: "50px" }}>
-              <div class={style.subMenu}>
-                <div class={style.subtitle} onClick={() => setMenu({})}>
-                  <div class="rotate-180">
+              <div className={style.subMenu}>
+                <div className={style.subtitle} onClick={() => setMenu({})}>
+                  <div className="rotate-180">
                     <ChevronIcon />
                   </div>
-                  <p class="mb-0">{menu.title}</p>
+                  <p className="mb-0">{menu.title}</p>
                 </div>
                 <div>
                   {menu.subMenu.map((item) => (
@@ -64,7 +64,7 @@ function NavbarUserMobileMenu({ onClose }) {
           )}
         </div>
       </div>
-      <div class={style.close} onClick={onClose}></div>
+      <div className={style.close} onClick={onClose}></div>
     </div>
   );
 }

@@ -1,0 +1,4 @@
+.content {
+  @apply lg:grid;
+  grid-template-columns: minmax(747px, 1fr) minmax(355px, 1fr);
+}

@@ -1,8 +1,9 @@
+import cn from "classnames";
 import parse from "html-react-parser";
 import Image from "next/image";
+import Link from "next/link";
 import PostBodyVideo from "./post-body-video";
 import styles from './post-body.module.scss';
-
 
 export default function PostBody({ content }) {
   const getVideoId = (url) => {
@@ -18,19 +19,78 @@ export default function PostBody({ content }) {
   }
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="mx-auto">
       <div className={styles.content}>
         {parse(content, {
           replace: (domNode) => {
-            const { attribs, children } = domNode;
+            const { attribs, children, name } = domNode;
             if (!attribs) {
               return;
             }
-            if (attribs.class === "elementor-cta__bg-wrapper") {
-              console.log({ domNode }, attribs.class);
+
+            if (attribs.class === "elementor-headline") {
+              console.log({ domNode })
+            }
+
+            if (attribs.src?.includes("image/png;base64")) {
+              return <></>;
+            }
+
+            if (
+              attribs.href &&
+              attribs.href.includes("www.komunitasmea.web.id/")
+            ) {
+              const link = attribs.href.split("www.komunitasmea.web.id/")[1];
+              const path = link.includes("tag") || link.includes("category") ? "/articles/" : "/article/"
+
+              if (!link) return
+              return (
+                <Link href={path + link}>
+                  <a>{domNode.children[0].data}</a>
+                </Link>
+              );
+            }
+
+           
+            if (attribs.class?.includes("elementor-heading-title") && name === "h1") {
+              return <></>;
+            }
+
+            if (attribs.class?.includes("elementor-cta--layout-image-right")) {
+              domNode.attribs.class = cn(
+                domNode.attribs.class,
+                styles.elementorctaright
+              );
+            }
+
+            if (attribs.class?.includes("elementor-cta--layout-image-left")) {
+              domNode.attribs.class = cn(
+                domNode.attribs.class,
+                styles.elementorctaleft
+              );
+            }
+            if (attribs.class === "elementor-cta") {
+              domNode.attribs.class = cn("elementor-cta", styles.elementorcta);
+              return domNode;
             }
             if (attribs.style === "position:absolute; top:0; left:-9999px;") {
               return <></>;
+            }
+
+            if (attribs.class?.includes("elementor-cta__button-wrapper")) {
+              const element = domNode.children.find((item) => item.type === "tag")
+              const href = element.attribs.href;
+              if (!href) return;
+              const link = href?.includes("www.komunitasmea.web.id")
+                ? `/article${href.split("www.komunitasmea.web.id")[1]}`
+                : href;
+              return (
+                <div className="elementor-cta__button-wrapper elementor-cta__content-item elementor-content-item ">
+                  <Link href={link}>
+                    <a>{element.children[0].data}</a>
+                  </Link>
+                </div>
+              );
             }
             
             if (attribs.class === "elementor-video") {
@@ -57,15 +117,14 @@ export default function PostBody({ content }) {
                 src = domNode.childNodes[i].attribs.src;   
                 if (!src) return;
                 
-                const alt = domNode.childNodes[i].attribs.alt;             
+                const alt = domNode.childNodes[i].attribs.alt;     
                 return (
-                  <div className="elementor-image">
+                  <div className="elementor-image text-center">
                     <Image
                       src={src}
                       alt={alt}
                       width={domNode.childNodes[i].attribs.width}
                       height={domNode.childNodes[i].attribs.height}
-                      layout="responsive"
                     />
                   </div>
                 );

@@ -1,32 +1,22 @@
-import Avatar from './avatar'
-import Categories from './categories'
-import CoverImage from './cover-image'
-import Date from './date'
-import PostTitle from './post-title'
+import CoverImage from './cover-image';
+import Date from './date';
+import PostHeaderShare from './post-header-share';
+import PostTitle from './post-title';
 
-export default function PostHeader({ title, coverImage, date, author, categories }) {
+export default function PostHeader({ title, coverImage, date, author, categories, link }) {
   return (
     <>
       <PostTitle>{title}</PostTitle>
-      <div className="hidden md:block md:mb-12">
-        <Avatar author={author} />
+      <div className="lg:mb-24px mb-20px">
+        <Date dateString={date} dateFormat="d	LLLL, yyyy" />
       </div>
-      <div className="max-w-2xl mx-auto">
-        <CoverImage
-          title={title}
-          coverImage={coverImage}
-          categories={categories}
-        />
+      <div>
+        <PostHeaderShare link={link} title={title} />
       </div>
-      <div className="max-w-2xl mx-auto">
-        <div className="block md:hidden mb-6">
-          <Avatar author={author} />
-        </div>
-        <div className="mb-6 text-lg">
-          Posted <Date dateString={date} />
-          <Categories categories={categories} />
-        </div>
-      </div>
+      <CoverImage
+        title={title}
+        coverImage={coverImage}
+      />
     </>
   );
 }
