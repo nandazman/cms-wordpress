@@ -27,7 +27,7 @@ export default function Post({ post, posts, preview }) {
       const category = categories.edges.find(
         (category) => category.node.name !== "Uncategorized"
       );
-      return category.node || null;
+      return category?.node || null;
     }
 
     const category = categories?.edges?.node?.name;
