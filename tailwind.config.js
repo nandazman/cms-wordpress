@@ -11,18 +11,19 @@ module.exports = {
       xl: "1200px",
     },
     borderRadius: {
-      'none': '0',
-      'sm': '5px',
-      DEFAULT: '4px',
-      'md': '8px',
-      'lg': '10px',
-      'full': '9999px',
-      'large': '12px',
+      none: "0",
+      sm: "5px",
+      DEFAULT: "4px",
+      md: "8px",
+      lg: "10px",
+      full: "9999px",
+      large: "12px",
     },
     extend: {
       margin: {
         "15px": "15px",
         "16px": "16px",
+        "20px": "20px",
         "30px": "30px",
         "32px": "32px",
         "48px": "48px",
@@ -32,11 +33,6 @@ module.exports = {
         montserrat: ["Montserrat"],
       },
       colors: {
-        "accent-1": "#FAFAFA",
-        "accent-2": "#EAEAEA",
-        "accent-7": "#333",
-        success: "#0070f3",
-        cyan: "#79FFE1",
         "light-blue": "#2D3356",
         "tosca-blue": "#49A0A4",
         black: "#000000",
@@ -51,24 +47,8 @@ module.exports = {
         orange: "#E87F2F",
         "greyish-blue": "#8692A6",
       },
-      spacing: {
-        28: "7rem",
-      },
-      letterSpacing: {
-        tighter: "-.04em",
-      },
-      lineHeight: {
-        tight: 1.2,
-      },
-      fontSize: {
-        "5xl": "2.5rem",
-        "6xl": "2.75rem",
-        "7xl": "4.5rem",
-        "8xl": "6.25rem",
-      },
-      boxShadow: {
-        small: "0 5px 10px rgba(0, 0, 0, 0.12)",
-        medium: "0 8px 30px rgba(0, 0, 0, 0.12)",
+      borderColor: {
+        "greyish-blue": "#8692A6",
       },
     },
 

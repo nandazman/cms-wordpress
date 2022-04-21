@@ -9,7 +9,7 @@ function SearchInput({ className }) {
   return (
     <div
       className={cn(
-        "border-greyish-blue-600 border rounded-lg flex justify-between",
+        "border-greyish-blue border rounded-lg flex justify-between",
         className
       )}
     >
