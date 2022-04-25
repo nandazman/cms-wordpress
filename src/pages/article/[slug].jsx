@@ -7,6 +7,7 @@ import Container from '../../components/container';
 import SearchInput from "../../components/input/search";
 import Layout from '../../components/layout';
 import PostBody from '../../components/post-body';
+import PostListByCategory from "../../components/post-category-recommend";
 import PostHeader from '../../components/post-header';
 import PostLists from '../../components/post-lists';
 import PostShare from '../../components/post-share';
@@ -83,7 +84,7 @@ export default function Post({ post, posts, preview }) {
                     <PostShare link={post.slug} title={post.title} />
                   </div>
                   <div className="mb-48px">
-                    {/* <PostListByCategory category={category} /> */}
+                    <PostListByCategory category={category} />
                   </div>
                 </main>
                 <article>
