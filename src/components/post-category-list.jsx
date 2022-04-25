@@ -7,9 +7,13 @@ function PostCategoryList() {
   const [data, setData] = useState([]);
 
   const getCategories = async () => {
-    const data = await fetchCategories();
-    const filteredData = data.filter((item) => item.node.slug !== "uncategorized");
-    setData(filteredData || []);
+    try {
+      const data = await fetchCategories();
+      const filteredData = data.filter((item) => item.node.slug !== "uncategorized");
+      setData(filteredData || []);
+    } catch (err) {
+      console.error({ err })
+    }
   };
 
   useEffect(() => {

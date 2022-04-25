@@ -8,11 +8,16 @@ function PostListByCategory({ category, currentId }) {
   const [data, setData] = useState([]);
 
   const getPost = async () => {
-    const data = await fetchPostForRecommendedCategory({
-      category: category.slug,
-      currentId,
-    });
-    setData(data.edges || []);
+    
+    try {
+      const data = await fetchPostForRecommendedCategory({
+        category: category.slug,
+        currentId,
+      });
+      setData(data.edges || []);
+    } catch (err) {
+      console.error({ err });
+    }
   }
   useEffect(() => {
     getPost();
