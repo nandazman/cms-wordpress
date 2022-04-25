@@ -15,7 +15,10 @@
 
   .article-content {
     @apply lg:grid lg:gap-x-32px;
-    grid-template-columns: minmax(747px, 1fr) minmax(355px, 1fr);
+    grid-template-columns: minmax(747px, 1fr) 1fr;
+    @media screen and (max-width: 1140px) {
+      grid-template-columns: minmax(640px, 1fr) 1fr;
+    }
   }
   .line-clamp-3, .line-clamp-4 {
     p {
