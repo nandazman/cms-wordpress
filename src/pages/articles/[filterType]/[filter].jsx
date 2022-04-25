@@ -1,6 +1,6 @@
-import ErrorPage from "next/error";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import Container from "../../../components/container";
 import Layout from "../../../components/layout";
 import PostLists from "../../../components/post-lists";
@@ -11,9 +11,16 @@ export default function Index({ allPosts: { edges } }) {
   const router = useRouter();
   const posts = edges;
 
-  if (!router.isFallback && !posts?.length) {
-    return <ErrorPage statusCode={404} />;
-  }
+  useEffect(() => {
+    if (
+      !router.isFallback &&
+      !posts?.length &&
+      router.query.filterType !== "search"
+    ) {
+      router.push("/");
+      return;
+    }
+  })
 
   return (
     <>

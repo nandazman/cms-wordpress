@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Categories({ categories }) {
   const filterUncategorized = (categories) => {
     if (categories?.edges?.length > 0) {
@@ -16,12 +18,11 @@ export default function Categories({ categories }) {
     <span>
       {filteredCategories.length > 0 ? (
         categories.edges.map((category, index) => (
-          <span
-            key={index}
-            className="rounded-sm text-small text-white bg-orange px-3 py-2"
-          >
-            {category.node.name}
-          </span>
+          <Link href={`/articles/category/${category.node.slug}`} key={index}>
+            <a className="rounded-sm text-small text-white bg-orange px-3 py-2">
+              {category.node.name}
+            </a>
+          </Link>
         ))
       ) : (
         <></>
