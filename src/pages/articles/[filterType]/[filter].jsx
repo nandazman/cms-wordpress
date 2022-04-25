@@ -64,6 +64,30 @@ export default function Index({ allPosts: { edges, pageInfo } }) {
     setLatest(data.edges);
   }
 
+  const getCurrentPageMenu = () => {
+    const filterType = router.query.filterType;
+    if (filterType === "search" || filterType === "author")
+      return router.query.filter;
+    
+    if (posts.length === 0) return "";
+
+    if (filterType === "tag") {
+      const tag = posts[0].node.tags.edges.find(
+        (item) => item.node.slug === router.query.filter
+      );
+      return tag?.node?.name || "";
+    }
+
+    if (filterType === "category") {
+      const category = posts[0].node.categories.edges.find(
+        (item) => item.node.slug === router.query.filter
+      );
+      return category?.node?.name || "";
+    }
+
+    return "";
+  }
+
   useEffect(() => {
     if (
       !router.isFallback &&
@@ -82,15 +106,19 @@ export default function Index({ allPosts: { edges, pageInfo } }) {
     }
   }, [router.query.filter]);
 
+
+  const currentMenu = getCurrentPageMenu();
+  const type = filterTypeTranslate[router.query.filterType];
   const getMenu = () => {
     return [
       { text: "Home", link: "/" },
       {
-        text: filterTypeTranslate[router.query.filterType],
+        text: type,
       },
-      { text: router.query.filter },
+      { text: currentMenu },
     ];
   };
+
 
   return (
     <>
@@ -98,8 +126,7 @@ export default function Index({ allPosts: { edges, pageInfo } }) {
         <Container>
           <Head>
             <title>
-              {filterTypeTranslate[router.query.filterType]}{" "}
-              {router.query.filter}
+              {type} {currentMenu}
             </title>
           </Head>
 
@@ -108,8 +135,17 @@ export default function Index({ allPosts: { edges, pageInfo } }) {
           <div className="article-content">
             <main>
               <div className="mb-32px">
+                <p className="mb-0 text-dark-grey text-medium font-semibold">
+                  {type}
+                </p>
+                <h2 className="text-h2 text-dark-blue font-bold">
+                  {currentMenu}
+                </h2>
+              </div>
+              <div className="mb-32px">
                 <PostLists row posts={posts} />
               </div>
+
               <PaginationButtons
                 pageInfo={info}
                 className="mb-30px"

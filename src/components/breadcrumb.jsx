@@ -10,7 +10,9 @@ export default function BreadCrumb({ menu, className }) {
         <Fragment key={index}>
           {item.link ? (
             <Link href={item.link}>
-              <a className="cursor-pointer text-orange">{item.text}</a>
+              <a className="cursor-pointer text-orange capitalize ">
+                {item.text}
+              </a>
             </Link>
           ) : (
             <p className="mb-0">{item.text}</p>

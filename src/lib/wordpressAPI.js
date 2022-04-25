@@ -94,6 +94,14 @@ export async function getAllPostByPagination(variables) {
                 }
               }
             }
+            tags {
+              edges {
+                node {
+                  slug
+                  name
+                }
+              }
+            }
             author {
               node {
                 slug
