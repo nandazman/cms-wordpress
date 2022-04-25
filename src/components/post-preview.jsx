@@ -59,8 +59,9 @@ export default function PostPreview({
         { "items-center": row }
       )}
     >
-      <div className={cn({ "mb-5": !row }, { "w-80": row })}>
+      <div className={cn({ "mb-5": !row }, { "w-[330px]": row })}>
         <CoverImage
+          margin={!row}
           previewInArticle={previewInArticle}
           title={title}
           coverImage={coverImage}
@@ -94,7 +95,7 @@ export default function PostPreview({
             </div>
             <Link href={`/article/${slug}`}>
               <a className="text-black text-normal block mb-16px">
-                <span className="mr-16px text-semi-normal">
+                <span className="mr-16px text-semi-normal font-medium">
                   Baca Selengkapnya
                 </span>{" "}
                 <ChevronIcon />

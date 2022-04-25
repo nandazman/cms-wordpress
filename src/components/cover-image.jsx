@@ -4,7 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import Categories from "./categories";
 
-export default function CoverImage({ title, coverImage, slug, categories, previewInArticle }) {
+export default function CoverImage({
+  title,
+  coverImage,
+  slug,
+  categories,
+  previewInArticle,
+  margin,
+}) {
   const isAmp = useAmp();
   const image = (
     <Image
@@ -23,7 +30,7 @@ export default function CoverImage({ title, coverImage, slug, categories, previe
   );
 
   return (
-    <div className="mb-30px w-full">
+    <div className={cn("w-full", { "mb-30px": margin })}>
       {slug ? (
         <div className="relative">
           <Link href={`/article/${slug}`}>
@@ -34,7 +41,8 @@ export default function CoverImage({ title, coverImage, slug, categories, previe
               className={cn(
                 "absolute left-2",
                 { "bottom-5": !previewInArticle },
-                { "top-5": previewInArticle }
+                { "top-5": previewInArticle },
+                "z-10"
               )}
             >
               <Categories categories={categories} />

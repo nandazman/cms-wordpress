@@ -56,7 +56,8 @@ export default function Index({ allPosts: { edges, pageInfo } }) {
       router.push("/");
       return;
     }
-  });
+    getPost();
+  }, [router.query.filter]);
 
   const getMenu = () => {
     return [
