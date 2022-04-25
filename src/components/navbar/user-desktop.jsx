@@ -29,7 +29,10 @@ export default function NavbarUserDesktop() {
                   <div className={cn(style.submenu, "gap-x-10")}>
                     {item.subMenu.map((sub, subIndex) => {
                       return (
-                        <div className="bg-white" key={subIndex}>
+                        <div
+                          className="bg-white relative py-[11px]"
+                          key={subIndex}
+                        >
                           <LinkToMea
                             className="text-black font-normal hover:font-semibold"
                             id={sub.title}
@@ -37,11 +40,17 @@ export default function NavbarUserDesktop() {
                           >
                             {sub.title}
                           </LinkToMea>
-                          {/* {sub.subMenu ? (
-                              <DropdownSubMenu menu={sub.subMenu} />
+                          <div className="absolute bg-disabled-form">
+                            {sub.subMenu ? (
+                              <>
+                                {sub.subMenu.map((item) => (
+                                  <span className="p-2.5">{item.title}</span>
+                                ))}
+                              </>
                             ) : (
                               ""
-                            )} */}
+                            )}
+                          </div>
                         </div>
                       );
                     })}
