@@ -68,7 +68,7 @@ export default function Post({ post, posts, preview }) {
                   content={post.featuredImage?.sourceUrl}
                 />
               </Head>
-              <BreadCrumb menu={getMenu()} />
+              <BreadCrumb className="lg:mb-48px mb-24px" menu={getMenu()} />
               <div className="article-content">
                 <main className="lg:mb-0 mb-24px">
                   <PostHeader

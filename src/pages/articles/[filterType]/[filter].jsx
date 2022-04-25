@@ -79,7 +79,7 @@ export default function Index({ allPosts: { edges, pageInfo } }) {
             </title>
           </Head>
 
-          <BreadCrumb menu={getMenu()} />
+          <BreadCrumb className="mb-32px" menu={getMenu()} />
 
           <div className="article-content">
             <main>

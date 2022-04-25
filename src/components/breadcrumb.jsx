@@ -1,10 +1,11 @@
+import cn from "classnames";
 import Link from "next/link";
 import { Fragment } from "react";
 import style from "./breadcrumb.module.scss";
   
-export default function BreadCrumb({ menu }) {
+export default function BreadCrumb({ menu, className }) {
   return (
-    <div className={style.breadcrumb}>
+    <div className={cn(style.breadcrumb, className)}>
       {menu.map((item, index) => (
         <Fragment key={index}>
           {item.link ? (
