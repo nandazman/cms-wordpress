@@ -1,4 +1,3 @@
-import cn from 'classnames';
 import dynamic from "next/dynamic";
 import ErrorPage from 'next/error';
 import Head from 'next/head';
@@ -12,7 +11,6 @@ import PostShare from '../../components/post-share';
 import PostTitle from '../../components/post-title';
 import Tags from '../../components/tags';
 import { getPostAndMorePosts } from "../../lib/wordpressAPI";
-import style from "./article.module.scss";
 
 const PostListByCategory = dynamic(() =>
   import("../../components/post-category-recommend")
@@ -25,7 +23,6 @@ const SideArticle = dynamic(() =>
 export default function Post({ post, posts, preview }) {
   const router = useRouter()
   const morePosts = posts?.edges
-
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />
   }
@@ -72,7 +69,7 @@ export default function Post({ post, posts, preview }) {
                 />
               </Head>
               <BreadCrumb menu={getMenu()} />
-              <div className={cn(style.content, "lg:gap-x-32px")}>
+              <div className="article-content">
                 <main className="lg:mb-0 mb-24px">
                   <PostHeader
                     link={post.slug}

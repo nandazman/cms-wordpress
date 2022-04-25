@@ -7,7 +7,7 @@ import PaginationButtons from "../components/pagination/buttons";
 import PostLists from '../components/post-lists';
 import { fetchPostForHome } from '../lib/api';
 import { CMS_NAME } from '../lib/constants';
-import { getAllPostsForHome } from '../lib/wordpressAPI';
+import { getAllPostByPagination } from '../lib/wordpressAPI';
 
 const initPagination = {
   first: null,
@@ -55,7 +55,7 @@ export default function Index({ allPosts: { edges, pageInfo }, preview }) {
 }
 
 export async function getServerSideProps() {
-  const allPosts = await getAllPostsForHome({
+  const allPosts = await getAllPostByPagination({
     ...initPagination,
     first: 6
   });

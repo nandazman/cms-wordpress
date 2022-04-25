@@ -56,14 +56,17 @@ export async function getAllPostsWithSlug() {
   return data?.posts
 }
 
-export async function getAllPostsForHome(variables) {
+export async function getAllPostByPagination(variables) {
+  const filter = variables.filter
+    ? `, ${variables.filterType}: "${variables.filter}"`
+    : "";
   const data = await fetchAPI(
     `
     query AllPosts($first: Int
     $last: Int
     $after: String
     $before: String) {
-      posts(first: $first, last: $last, after: $after, before: $before, where: {orderby: {field: DATE, order: DESC}}) {
+      posts(first: $first, last: $last, after: $after, before: $before, where: {orderby: {field: DATE, order: DESC} ${filter}}) {
         pageInfo {
           hasNextPage
           hasPreviousPage
@@ -110,71 +113,6 @@ export async function getAllPostsForHome(variables) {
   `,
     {
       variables,
-    }
-  );
-
-  return data?.posts;
-}
-
-export async function getAllPostsByFilter(option, preview = false) {
-  const data = await fetchAPI(
-    `
-    query AllPostsByFilter {
-      posts(first: 10, where: {orderby: {field: DATE, order: DESC}, ${option.filterType}: "${option.filter}"}) {
-
-        pageInfo {
-          hasNextPage
-          hasPreviousPage
-          endCursor
-          startCursor
-        }
-        edges {
-          node {
-            title
-            excerpt
-            slug
-            date
-            categories {
-              edges {
-                node {
-                  name
-                  id
-                  slug
-                }
-              }
-            }
-            tags {
-              edges {
-                node {
-                  slug
-                  name
-                  id
-                }
-              }
-            }
-            author {
-              node {
-                id
-                slug
-                nickname
-                name
-                firstName
-                lastName
-                avatar {
-                  url
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `,
-    {
-      variables: {
-        onlyEnabled: !preview,
-        preview,
-      },
     }
   );
 

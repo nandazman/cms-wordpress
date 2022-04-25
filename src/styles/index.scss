@@ -12,6 +12,21 @@
   h1, h2, h3, h4, h5, h6, .text-h1, .text-h2, .text-h3, .text-h4, .text-h5, .text-h6 {
     @apply font-bold text-dark-blue;
   }
+
+  .article-content {
+    @apply lg:grid lg:gap-x-32px;
+    grid-template-columns: minmax(747px, 1fr) minmax(355px, 1fr);
+  }
+  .line-clamp-3, .line-clamp-4 {
+    p {
+      display: inherit;
+      -webkit-box-orient: inherit;
+      overflow: inherit;
+      white-space: inherit;
+      -webkit-line-clamp: inherit;
+    }
+  }
+  
 }
 
 /* Write your own custom base styles here */
