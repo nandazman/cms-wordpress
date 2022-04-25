@@ -7,6 +7,7 @@ import Container from '../../components/container';
 import SearchInput from "../../components/input/search";
 import Layout from '../../components/layout';
 import PostBody from '../../components/post-body';
+import PostCategoryList from '../../components/post-category-list';
 import PostListByCategory from "../../components/post-category-recommend";
 import PostHeader from '../../components/post-header';
 import PostLists from '../../components/post-lists';
@@ -88,6 +89,7 @@ export default function Post({ post, posts, preview }) {
                 </main>
                 <article>
                   <SearchInput className="mb-48px max-w-screen-md mx-auto" />
+                  <PostCategoryList />
                   {morePosts.length > 0 && (
                     <PostLists previewInArticle posts={morePosts} />
                   )}

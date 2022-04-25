@@ -18,5 +18,5 @@ export function fetchPostForHome(variables) {
 }
 
 export function fetchPostForRecommendedCategory(variables) {
-  return fetchAPI("/api/category", variables);
+  return fetchAPI("/api/post-by-category", variables);
 }

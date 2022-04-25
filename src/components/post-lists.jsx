@@ -7,7 +7,7 @@ function PostList({ posts, className, previewInArticle }) {
     <section className={className || ""}>
       {previewInArticle ? (
         <p className="mb-32px text-large text-dark-blue font-semibold">
-          Artikel Kami Lainnya
+          Artikel Terbaru
         </p>
       ) : (
         <></>
