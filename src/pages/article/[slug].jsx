@@ -12,7 +12,6 @@ import PostHeader from '../../components/post-header';
 import PostLists from '../../components/post-lists';
 import PostShare from '../../components/post-share';
 import PostTitle from '../../components/post-title';
-import SectionSeparator from '../../components/section-separator';
 import Tags from '../../components/tags';
 import { getPostAndMorePosts } from "../../lib/wordpressAPI";
 import style from "./article.module.scss";
@@ -96,7 +95,6 @@ export default function Post({ post, posts, preview }) {
               </div>
             </article>
 
-            <SectionSeparator />
           </>
         )}
       </Container>
