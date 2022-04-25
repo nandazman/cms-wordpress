@@ -27,6 +27,7 @@ module.exports = {
         "20px": "20px",
         "24px": "24px",
         "30px": "30px",
+        "40px": "40px",
         "32px": "32px",
         "48px": "48px",
         "50px": "50px",
@@ -74,7 +75,5 @@ module.exports = {
       h2: "40px",
     },
   },
-  plugins: [
-    require("@tailwindcss/line-clamp"),
-  ],
+  plugins: [require("@tailwindcss/line-clamp")],
 };

@@ -20,3 +20,7 @@ export function fetchPostForHome(variables) {
 export function fetchPostForRecommendedCategory(variables) {
   return fetchAPI("/api/post-by-category", variables);
 }
+
+export function fetchCategories() {
+  return fetchAPI("/api/categories");
+}

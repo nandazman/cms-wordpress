@@ -309,3 +309,23 @@ export async function getPostByCategory(category, currentId) {
 
   return data?.posts;
 } 
+
+export async function getCategories() {
+  const data = await fetchAPI(
+    `
+    query Categories {
+      categories {
+        edges {
+          node {
+            name
+            slug
+          }
+        }
+      }
+    }
+  `
+  );
+
+  return data?.categories?.edges || [];
+  
+}
