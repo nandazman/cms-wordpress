@@ -82,8 +82,8 @@ export default function Post({ post, posts, preview }) {
                   <div className="mb-48px">
                     <PostShare link={post.slug} title={post.title} />
                   </div>
-                  <div className="mb-48px">
-                    <PostListByCategory category={category} />
+                  <div className="mb-48px lg:flex hidden">
+                    <PostListByCategory currentId={post.databaseId} category={category} />
                   </div>
                 </main>
                 <article>

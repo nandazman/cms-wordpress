@@ -193,6 +193,7 @@ export async function getPostAndMorePosts(slug, preview, previewData) {
   const data = await fetchAPI(
     `
     fragment PostFields on Post {
+      databaseId
       title
       excerpt
       slug
@@ -290,11 +291,11 @@ export async function getPostAndMorePosts(slug, preview, previewData) {
   return data
 }
 
-export async function getPostByCategory(category) {
+export async function getPostByCategory(category, currentId) {
   const data = await fetchAPI(
     `
     query PosyByCategory {
-      posts(first: 6, where: {orderby: {field: DATE, order: DESC}, categoryName: "${category}" }) {
+      posts(first: 6, where: {orderby: {field: DATE, order: DESC}, categoryName: "${category}", notIn: ${currentId} }) {
         edges {
           node {
             title

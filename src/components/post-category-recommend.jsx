@@ -2,13 +2,16 @@ import Link from "next/link";
 import { memo, useEffect, useState } from "react";
 import { fetchPostForRecommendedCategory } from "../lib/api";
 
-function PostListByCategory({ category }) {
+function PostListByCategory({ category, currentId }) {
   if (!category) return <></>;
 
   const [data, setData] = useState([]);
 
   const getPost = async () => {
-    const data = await fetchPostForRecommendedCategory(category.slug);
+    const data = await fetchPostForRecommendedCategory({
+      category: category.slug,
+      currentId,
+    });
     setData(data.edges || []);
   }
   useEffect(() => {
