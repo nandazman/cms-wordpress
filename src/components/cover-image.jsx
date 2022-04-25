@@ -13,12 +13,58 @@ export default function CoverImage({
   margin,
 }) {
   const isAmp = useAmp();
+
+  const isCategoriesContain = (type) => {
+    if (categories?.edges?.length > 0) {
+      const contain = categories.edges.find((category) => {
+        category.node.name.includes(type);
+      });
+      
+      return !!contain;
+    }
+    return false
+  }
+
+  const getThumbnail = () => {
+    const loweredTitle = title.toLowerCase();
+    if (loweredTitle.includes("shopee") || isCategoriesContain("shopee"))
+      return "/asset/shopee.png";
+    
+    if (loweredTitle.includes("tiktok") || isCategoriesContain("tiktok"))
+      return "/asset/tiktok.jpeg";
+    
+    if (
+      loweredTitle.includes("marketplace") ||
+      isCategoriesContain("marketplace")
+    )
+      return "/asset/marketplace.png";
+    if (
+      loweredTitle.includes("penjualan") ||
+      loweredTitle.includes("tips") ||
+      loweredTitle.includes("shop") ||
+      isCategoriesContain("penjualan") ||
+      isCategoriesContain("tips") ||
+      isCategoriesContain("shop")
+    )
+      return "/asset/online-selling.png";
+    
+    if (
+      loweredTitle.includes("social") ||
+      loweredTitle.includes("sosial") ||
+      loweredTitle.includes("media") ||
+      isCategoriesContain("social") || 
+      isCategoriesContain("sosial") ||
+      isCategoriesContain("media")
+    )
+      return "/asset/social-media.png";
+    return "/asset/general.jpg";
+  }
   const image = (
     <Image
       alt={`Cover Image for ${title}`}
       src={
         coverImage?.node?.sourceUrl ||
-        "https://storage.googleapis.com/smarketing-prod/course-thumbnail/Yohan Agustian.png"
+        getThumbnail()
       }
       className={cn("shadow-small", {
         "hover:shadow-medium transition-shadow duration-200": slug,
