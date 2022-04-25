@@ -24,9 +24,18 @@ const filterTypeMap = {
   search: "search",
 };
 
+const filterTypeTranslate = {
+  category: "Kategori",
+  tag: "Tag",
+  author: "Author",
+  search: "Pencarian",
+};
+
 export default function Index({ allPosts: { edges, pageInfo } }) {
   const [posts, setPosts] = useState(edges);
   const [info, setInfo] = useState(pageInfo);
+  const [init, setInit] = useState(true);
+  const [latest, setLatest] = useState([]);
   const router = useRouter();
 
   const onPaginationClick = useCallback(
@@ -47,6 +56,14 @@ export default function Index({ allPosts: { edges, pageInfo } }) {
     setInfo(pageInfo);
   };
 
+  const getLatestPost = async () => {
+    const data = await fetchPostByFilter({
+      ...initPagination,
+      first: 3
+    });
+    setLatest(data.edges);
+  }
+
   useEffect(() => {
     if (
       !router.isFallback &&
@@ -56,14 +73,20 @@ export default function Index({ allPosts: { edges, pageInfo } }) {
       router.push("/");
       return;
     }
-    getPost();
+
+    if (init) {
+      setInit(false);
+      getLatestPost();
+    } else {
+      getPost();
+    }
   }, [router.query.filter]);
 
   const getMenu = () => {
     return [
       { text: "Home", link: "/" },
       {
-        text: router.query.filterType,
+        text: filterTypeTranslate[router.query.filterType],
       },
       { text: router.query.filter },
     ];
@@ -75,7 +98,8 @@ export default function Index({ allPosts: { edges, pageInfo } }) {
         <Container>
           <Head>
             <title>
-              Pencarian {router.query.filterType} {router.query.filter}
+              {filterTypeTranslate[router.query.filterType]}{" "}
+              {router.query.filter}
             </title>
           </Head>
 
@@ -94,126 +118,7 @@ export default function Index({ allPosts: { edges, pageInfo } }) {
               />
             </main>
 
-            <SideArticle
-              posts={[
-                {
-                  node: {
-                    databaseId: 28557,
-                    title: "Rahasia Jam Posting Konten di TikTok!",
-                    excerpt:
-                      "<p>Rahasia Jam Posting Konten di TikTok! Rahasia jam posting &#8211; Kita selalu berdebat dan menentukan waktu untuk memposting konten atau sering dikatakan prime time. Bahkan banyak yang mengikuti strategi orang&#8230; </p>\n",
-                    slug: "rahasia-jam-posting-konten-di-tiktok",
-                    date: "2022-04-22T17:15:45",
-                    featuredImage: null,
-                    author: {
-                      node: {
-                        slug: "fiqhi",
-                        firstName: null,
-                        lastName: null,
-                        name: "fiqhi",
-                        avatar: {
-                          url: "https://secure.gravatar.com/avatar/12d0c1e93574c7cb2c7a0bac96c7c1be?s=96&d=mm&r=g",
-                        },
-                      },
-                    },
-                    categories: {
-                      edges: [
-                        {
-                          node: {
-                            name: "Tips Jualan di Social media",
-                            slug: "tips-jualan-di-social-media",
-                          },
-                        },
-                      ],
-                    },
-                    tags: {
-                      edges: [],
-                    },
-                  },
-                },
-                {
-                  node: {
-                    databaseId: 28549,
-                    title: "Strategi untung jutaan dari TT shop",
-                    excerpt:
-                      "<p>Strategi Untung Jutaan dari TT Shop! Strategi untung jutaan dari TT shop &#8211; Tiktok bukan hanya menjadi ajang untuk mengadu kecantikan atau joget. Kini kamu bisa memanfaatkan TikTok Shop sebagai&#8230; </p>\n",
-                    slug: "strategi-untung-jutaan-dari-tt-shop",
-                    date: "2022-04-22T16:29:56",
-                    featuredImage: {
-                      node: {
-                        sourceUrl:
-                          "https://www.komunitasmea.web.id/wp-content/uploads/2022/04/business-plan-concept-illustration_114360-1487.webp",
-                      },
-                    },
-                    author: {
-                      node: {
-                        slug: "fiqhi",
-                        firstName: null,
-                        lastName: null,
-                        name: "fiqhi",
-                        avatar: {
-                          url: "https://secure.gravatar.com/avatar/12d0c1e93574c7cb2c7a0bac96c7c1be?s=96&d=mm&r=g",
-                        },
-                      },
-                    },
-                    categories: {
-                      edges: [
-                        {
-                          node: {
-                            name: "Tips Jualan di Social media",
-                            slug: "tips-jualan-di-social-media",
-                          },
-                        },
-                      ],
-                    },
-                    tags: {
-                      edges: [],
-                    },
-                  },
-                },
-                {
-                  node: {
-                    databaseId: 28532,
-                    title:
-                      "Marketing Tools yang Wajib Diketahui Small Bussines",
-                    excerpt:
-                      "<p>Marketing Tools yang Wajib Diketahui Small Bussines Marketing tools yang wajib diketahui &#8211; Kenapa marketing tools penting untuk bisnis? Pastinya jualan menggunakan platform digital marketing tools untuk mendatangkan traffic ke&#8230; </p>\n",
-                    slug: "marketing-tools-yang-wajib-diketahui-small-bussines",
-                    date: "2022-04-22T16:19:28",
-                    featuredImage: {
-                      node: {
-                        sourceUrl:
-                          "https://www.komunitasmea.web.id/wp-content/uploads/2022/04/document-marketing-strategy-business-concept_53876-133729.webp",
-                      },
-                    },
-                    author: {
-                      node: {
-                        slug: "fiqhi",
-                        firstName: null,
-                        lastName: null,
-                        name: "fiqhi",
-                        avatar: {
-                          url: "https://secure.gravatar.com/avatar/12d0c1e93574c7cb2c7a0bac96c7c1be?s=96&d=mm&r=g",
-                        },
-                      },
-                    },
-                    categories: {
-                      edges: [
-                        {
-                          node: {
-                            name: "Cara Memulai Bisnis Online",
-                            slug: "cara-memulai-bisnis-online",
-                          },
-                        },
-                      ],
-                    },
-                    tags: {
-                      edges: [],
-                    },
-                  },
-                },
-              ]}
-            />
+            <SideArticle posts={latest} />
           </div>
         </Container>
       </Layout>

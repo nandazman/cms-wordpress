@@ -125,8 +125,8 @@ export async function getPostAndMorePosts(slug, preview, previewData) {
   // The slug may be the id of an unpublished post
   const isId = Number.isInteger(Number(slug))
   const isSamePost = isId
-    ? Number(slug) === postPreview.id
-    : slug === postPreview.slug
+    ? Number(slug) === postPreview?.id
+    : slug === postPreview?.slug
   const isDraft = isSamePost && postPreview?.status === 'draft'
   const isRevision = isSamePost && postPreview?.status === 'publish'
   const data = await fetchAPI(
@@ -171,7 +171,7 @@ export async function getPostAndMorePosts(slug, preview, previewData) {
       }
     }
 
-    query PostBySlug($id: ID!, $idType: PostIdType!) {
+    query PostBySlug($id: ID, $idType: PostIdType) {
       post(id: $id, idType: $idType) {
         ...PostFields
         content

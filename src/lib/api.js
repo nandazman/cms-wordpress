@@ -17,6 +17,10 @@ export function fetchPostForHome(variables) {
   return fetchAPI("/api/home", variables);
 }
 
+export function fetchPostAndMorePost() {
+  return fetchAPI("/api/post-latest");
+}
+
 export function fetchPostByFilter(variables) {
   return fetchAPI("/api/post-by-filter", variables);
 }
