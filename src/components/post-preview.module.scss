@@ -20,8 +20,8 @@
     z-index: 2;
   }
   .backdrop {
+    @apply opacity-50 transition-all;
     background: linear-gradient(356.94deg, #000000 2.19%, rgba(0, 0, 0, 0.05) 97.14%);
-    opacity: 0.5;
   }
   .description {
     @apply flex flex-col justify-end px-6 pb-2.5;
@@ -32,6 +32,12 @@
       -webkit-line-clamp: 2;
       overflow: hidden;
       white-space: pre-line;
+    }
+  }
+
+  &:hover {
+    .backdrop {
+      @apply opacity-80;
     }
   }
 }
