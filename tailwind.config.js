@@ -50,6 +50,7 @@ module.exports = {
         orange: "#E87F2F",
         "greyish-blue": "#8692A6",
         "disabled-form": "#F1F2F2",
+        "line-grey": "#E1E1E1"
       },
       borderColor: {
         "greyish-blue": "#8692A6",

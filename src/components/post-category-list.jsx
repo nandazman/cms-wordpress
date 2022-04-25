@@ -1,3 +1,4 @@
+import cn from "classnames";
 import Link from "next/link";
 import { memo, useEffect, useState } from "react";
 import { fetchCategories } from "../lib/api";
@@ -22,11 +23,16 @@ function PostCategoryList() {
       <p className="mb-32px text-large text-dark-blue font-semibold">
         Kategori
       </p>
-      <div className="flex flex-col gap-y-40px">
-        {data.map(({ node: { name, slug } }) => {
+      <div className="flex flex-col">
+        {data.map(({ node: { name, slug } }, index) => {
           return (
             <Link href={`/articles/category/${slug}`} key={slug}>
-              <a className="text-normal text-black cursor-pointer line-clamp-2">
+              <a
+                className={cn(
+                  { "pt-20px": index !== 0 },
+                  "pb-20px text-normal text-black cursor-pointer line-clamp-2 border-b border-line-grey"
+                )}
+              >
                 {name}
               </a>
             </Link>
