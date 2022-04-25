@@ -37,7 +37,6 @@ export default function CoverImage({ title, coverImage, slug, categories, previe
     </div>
   );
 
-  console.log({ previewInArticle });
   return (
     <div className="mb-30px w-full">
       {slug ? (

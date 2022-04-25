@@ -13,11 +13,18 @@
   .content {
     @apply hidden;
   }
-  .description {
-    @apply absolute;
-    bottom: 10px;
-    left: 24px;
+  .backdrop, .description {
+    @apply absolute w-full h-full;
+    top: 0px;
+    left: 0px;
     z-index: 2;
+  }
+  .backdrop {
+    background: linear-gradient(356.94deg, #000000 2.19%, rgba(0, 0, 0, 0.05) 97.14%);
+    opacity: 0.5;
+  }
+  .description {
+    @apply flex flex-col justify-end px-6 pb-2.5;
     h3 {
       @apply text-white font-bold text-normal;
       display: -webkit-box;

@@ -1,9 +1,8 @@
-import CoverImage from './cover-image';
 import Date from './date';
 import PostHeaderShare from './post-share';
 import PostTitle from './post-title';
 
-export default function PostHeader({ title, coverImage, date, link }) {
+export default function PostHeader({ title, date, link }) {
   return (
     <>
       <PostTitle>{title}</PostTitle>
@@ -13,10 +12,6 @@ export default function PostHeader({ title, coverImage, date, link }) {
       <div>
         <PostHeaderShare link={link} title={title} />
       </div>
-      <CoverImage
-        title={title}
-        coverImage={coverImage}
-      />
     </>
   );
 }

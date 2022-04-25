@@ -16,3 +16,7 @@ async function fetchAPI(url, variables) {
 export function fetchPostForHome(variables) {
   return fetchAPI("/api/home", variables);
 }
+
+export function fetchPostForRecommendedCategory(category) {
+  return fetchAPI("/api/category", {category});
+}

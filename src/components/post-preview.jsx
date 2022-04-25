@@ -1,3 +1,4 @@
+import cn from "classnames";
 import parse from "html-react-parser";
 import Link from 'next/link';
 import CoverImage from './cover-image';
@@ -25,7 +26,7 @@ export default function PostPreview({
   if (previewInArticle) {
     return (
       <Link href={`/article/${slug}`}>
-        <div className={style.contentPreview}>
+        <div className={cn(style.contentPreview, "cursor-pointer")}>
           <div className="mb-5">
             <CoverImage
               previewInArticle
@@ -35,10 +36,9 @@ export default function PostPreview({
               categories={categories}
             />
           </div>
+          <div className={style.backdrop}></div>
           <div className={style.description}>
-            <h3 className="text-3xl mb-3 leading-snug">
-              {parse(title)}
-            </h3>
+            <h3 className="text-3xl mb-3 leading-snug">{parse(title)}</h3>
             <div className="flex text-semi-normal">
               <p className="text-yellow mr-16px mb-0">
                 <Date dateFormat="d	LLLL yyyy" dateString={date} />

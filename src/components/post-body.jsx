@@ -85,9 +85,9 @@ export default function PostBody({ content }) {
                 ? `/article${href.split("www.komunitasmea.web.id")[1]}`
                 : href;
               return (
-                <div className="elementor-cta__button-wrapper elementor-cta__content-item elementor-content-item ">
+                <div className="elementor-cta__button-wrapper elementor-cta__content-item elementor-content-item">
                   <Link href={link}>
-                    <a>{element.children[0].data}</a>
+                    <a className="cursor-pointer">{element.children[0].data}</a>
                   </Link>
                 </div>
               );

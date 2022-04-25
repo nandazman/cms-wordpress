@@ -7,6 +7,7 @@ import Container from '../../components/container';
 import SearchInput from "../../components/input/search";
 import Layout from '../../components/layout';
 import PostBody from '../../components/post-body';
+import PostListByCategory from "../../components/post-category-recommend";
 import PostHeader from '../../components/post-header';
 import PostLists from '../../components/post-lists';
 import PostShare from '../../components/post-share';
@@ -37,8 +38,9 @@ export default function Post({ post, posts, preview }) {
     return category === "Uncategorized" ? null : categories?.edges?.node;
   };
 
+  const category = getCategory(post.categories);
+
   const getMenu = () => {
-    const category = getCategory(post.categories);
     if (category) {
       return [
         { text: "Home", link: "/" },
@@ -70,7 +72,6 @@ export default function Post({ post, posts, preview }) {
                   <PostHeader
                     link={post.slug}
                     title={post.title}
-                    coverImage={post.featuredImage}
                     date={post.date}
                     author={post.author}
                     categories={post.categories}
@@ -81,6 +82,9 @@ export default function Post({ post, posts, preview }) {
                   </div>
                   <div className="mb-48px">
                     <PostShare link={post.slug} title={post.title} />
+                  </div>
+                  <div className="mb-48px">
+                    <PostListByCategory category={category} />
                   </div>
                 </main>
                 <article>
