@@ -1,11 +1,13 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import BreadCrumb from "../../../components/breadcrumb";
 import Container from "../../../components/container";
 import Layout from "../../../components/layout";
+import PaginationButtons from "../../../components/pagination/buttons";
 import PostLists from "../../../components/post-lists";
 import SideArticle from "../../../components/side-article";
+import { fetchPostByFilter } from "../../../lib/api";
 import { getAllPostByPagination } from "../../../lib/wordpressAPI";
 
 const initPagination = {
@@ -15,9 +17,35 @@ const initPagination = {
   before: null,
 };
 
-export default function Index({ allPosts: { edges } }) {
+const filterTypeMap = {
+  category: "categoryName",
+  tag: "tag",
+  author: "authorName",
+  search: "search",
+};
+
+export default function Index({ allPosts: { edges, pageInfo } }) {
+  const [posts, setPosts] = useState(edges);
+  const [info, setInfo] = useState(pageInfo);
   const router = useRouter();
-  const posts = edges;
+
+  const onPaginationClick = useCallback(
+    (variables) => {
+      getPost(variables);
+    },
+    [pageInfo]
+  );
+  const getPost = async (variables) => {
+    const filterType = filterTypeMap[router.query.filterType];
+    const { edges, pageInfo } = await fetchPostByFilter({
+      ...initPagination,
+      ...variables,
+      filterType,
+      filter: router.query.filter,
+    });
+    setPosts(edges);
+    setInfo(pageInfo);
+  };
 
   useEffect(() => {
     if (
@@ -28,7 +56,7 @@ export default function Index({ allPosts: { edges } }) {
       router.push("/");
       return;
     }
-  })
+  });
 
   const getMenu = () => {
     return [
@@ -54,7 +82,15 @@ export default function Index({ allPosts: { edges } }) {
 
           <div className="article-content">
             <main>
-              <PostLists row posts={posts} />
+              <div className="mb-32px">
+                <PostLists row posts={posts} />
+              </div>
+              <PaginationButtons
+                pageInfo={info}
+                className="mb-30px"
+                onClick={onPaginationClick}
+                limit={5}
+              />
             </main>
 
             <SideArticle
@@ -193,13 +229,6 @@ export default function Index({ allPosts: { edges } }) {
 // }
 
 export async function getServerSideProps({ params }) {
-  const filterTypeMap = {
-    category: "categoryName",
-    tag: "tag",
-    author: "authorName",
-    search: "search"
-  };
-
   const filterType = filterTypeMap[params.filterType];
 
   if (!filterType) return { props: { allPosts: [] } }

@@ -5,7 +5,8 @@ import PaginationButton from "./button";
 function PaginationButtons({
   className,
   pageInfo: { hasNextPage, hasPreviousPage, endCursor, startCursor },
-  onClick
+  onClick,
+  limit = 6
 }) {
   return (
     <div className={cn("flex gap-2 justify-center", className)}>
@@ -15,7 +16,7 @@ function PaginationButtons({
         onClick={() => {
           onClick({
             before: startCursor,
-            last: 6,
+            last: limit,
           });
         }}
       />
@@ -24,7 +25,7 @@ function PaginationButtons({
         onClick={() => {
           onClick({
             after: endCursor,
-            first: 6,
+            first: limit,
           });
         }}
       />
