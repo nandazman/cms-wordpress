@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import dynamic from "next/dynamic";
 import ErrorPage from 'next/error';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -7,8 +8,6 @@ import Container from '../../components/container';
 import SearchInput from "../../components/input/search";
 import Layout from '../../components/layout';
 import PostBody from '../../components/post-body';
-import PostCategoryList from '../../components/post-category-list';
-import PostListByCategory from "../../components/post-category-recommend";
 import PostHeader from '../../components/post-header';
 import PostLists from '../../components/post-lists';
 import PostShare from '../../components/post-share';
@@ -16,6 +15,14 @@ import PostTitle from '../../components/post-title';
 import Tags from '../../components/tags';
 import { getPostAndMorePosts } from "../../lib/wordpressAPI";
 import style from "./article.module.scss";
+
+const PostListByCategory = dynamic(() =>
+  import("../../components/post-category-recommend")
+);
+
+const PostCategoryList = dynamic(() =>
+  import("../../components/post-category-list")
+);
 
 export default function Post({ post, posts, preview }) {
   const router = useRouter()
