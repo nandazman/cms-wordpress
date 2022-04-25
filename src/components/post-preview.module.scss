@@ -7,3 +7,24 @@
     white-space: pre-line;
   }
 }
+
+.contentPreview {
+  @apply relative;
+  .content {
+    @apply hidden;
+  }
+  .description {
+    @apply absolute;
+    bottom: 10px;
+    left: 24px;
+    z-index: 2;
+    h3 {
+      @apply text-white font-bold text-normal;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      white-space: pre-line;
+    }
+  }
+}

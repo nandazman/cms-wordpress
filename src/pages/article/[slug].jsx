@@ -1,8 +1,10 @@
+import cn from 'classnames';
 import ErrorPage from 'next/error';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import BreadCrumb from '../../components/breadcrumb';
 import Container from '../../components/container';
+import SearchInput from "../../components/input/search";
 import Layout from '../../components/layout';
 import PostBody from '../../components/post-body';
 import PostHeader from '../../components/post-header';
@@ -62,8 +64,8 @@ export default function Post({ post, posts, preview }) {
                 />
               </Head>
               <BreadCrumb menu={getMenu()} />
-              <div className={style.content}>
-                <main>
+              <div className={cn(style.content, "lg:gap-x-32px")}>
+                <main className="lg:mb-0 mb-24px">
                   <PostHeader
                     link={post.slug}
                     title={post.title}
@@ -77,12 +79,16 @@ export default function Post({ post, posts, preview }) {
                     {post.tags.edges.length > 0 && <Tags tags={post.tags} />}
                   </footer>
                 </main>
-                <article>hehe</article>
+                <article>
+                  <SearchInput className="mb-48px max-w-screen-md mx-auto" />
+                  {morePosts.length > 0 && (
+                    <PostLists previewInArticle posts={morePosts} />
+                  )}
+                </article>
               </div>
             </article>
 
             <SectionSeparator />
-            {morePosts.length > 0 && <PostLists posts={morePosts} />}
           </>
         )}
       </Container>
@@ -98,7 +104,6 @@ export async function getServerSideProps({
   const data = await getPostAndMorePosts(params.slug, preview, previewData);
   return {
     props: {
-      preview,
       post: data.post,
       posts: data.posts,
     },

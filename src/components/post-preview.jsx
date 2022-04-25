@@ -13,6 +13,7 @@ export default function PostPreview({
   author,
   slug,
   categories,
+  previewInArticle,
 }) {
   const postAuthor = author.node;
   const name = postAuthor
@@ -20,10 +21,39 @@ export default function PostPreview({
       ? `${postAuthor.firstName} ${postAuthor.lastName}`
       : postAuthor.name
     : null;
+  
+  if (previewInArticle) {
+    return (
+      <Link href={`/article/${slug}`}>
+        <div className={style.contentPreview}>
+          <div className="mb-5">
+            <CoverImage
+              previewInArticle
+              title={title}
+              coverImage={coverImage}
+              slug={slug}
+              categories={categories}
+            />
+          </div>
+          <div className={style.description}>
+            <h3 className="text-3xl mb-3 leading-snug">
+              {parse(title)}
+            </h3>
+            <div className="flex text-semi-normal">
+              <p className="text-yellow mr-16px mb-0">
+                <Date dateFormat="d	LLLL yyyy" dateString={date} />
+              </p>
+            </div>
+          </div>
+        </div>
+      </Link>
+    );
+  }
   return (
     <div>
       <div className="mb-5">
         <CoverImage
+          previewInArticle={previewInArticle}
           title={title}
           coverImage={coverImage}
           slug={slug}

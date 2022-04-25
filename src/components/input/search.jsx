@@ -6,6 +6,7 @@ import MagnifierIcon from "../icons/magnifier";
 function SearchInput({ className }) {
   const link = useRef(null);
   const [value, setValue] = useState("");
+
   return (
     <div
       className={cn(
@@ -19,11 +20,12 @@ function SearchInput({ className }) {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={(e) => {
-          if (e.key !== "Enter" || !value) return;
-          link.current.click();
+          if (e.key === "Enter" && value) {
+            link.current.click();
+          };
         }}
       />
-      <Link href={`/articles/search/${value}`}>
+      <Link href={value ? `/articles/search/${value}` : "#"}>
         <a aria-label="search" ref={link} className="p-3.5 cursor-pointer">
           <MagnifierIcon />
         </a>

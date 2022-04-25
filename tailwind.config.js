@@ -20,7 +20,7 @@ module.exports = {
       large: "12px",
     },
     extend: {
-      margin: {
+      spacing: {
         "15px": "15px",
         "16px": "16px",
         "20px": "20px",
