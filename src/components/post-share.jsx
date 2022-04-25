@@ -8,7 +8,7 @@ import TwitterIcon from "./icons/twitter";
 import WhatsappIcon from "./icons/whatsapp";
 import style from "./post-header-share.module.scss";
 
-export default function PostHeaderShare({ link, title }) {
+export default function PostShare({ link, title }) {
   const affiliateText = `${process.env.NEXT_PUBLIC_WEB_URL}/article/${link}`;
   const linkFacebookMobile = `https://www.facebook.com/dialog/share?display=popup&href=${affiliateText}&redirect_uri=https://komunitasmea.com&app_id=${process.env.NEXT_PUBLIC_FACEBOOK_APP_ID}`;
   const linkFacebookDesktop = `https://www.facebook.com/v9.0/dialog/feed?app_id=${process.env.NEXT_PUBLIC_FACEBOOK_APP_ID}&display=popup&link=${affiliateText}&redirect_uri=${process.env.NEXT_PUBLIC_WEB_URL}`;

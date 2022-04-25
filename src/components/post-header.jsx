@@ -1,9 +1,9 @@
 import CoverImage from './cover-image';
 import Date from './date';
-import PostHeaderShare from './post-header-share';
+import PostHeaderShare from './post-share';
 import PostTitle from './post-title';
 
-export default function PostHeader({ title, coverImage, date, author, categories, link }) {
+export default function PostHeader({ title, coverImage, date, link }) {
   return (
     <>
       <PostTitle>{title}</PostTitle>

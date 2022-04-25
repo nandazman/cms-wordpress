@@ -9,6 +9,7 @@ import Layout from '../../components/layout';
 import PostBody from '../../components/post-body';
 import PostHeader from '../../components/post-header';
 import PostLists from '../../components/post-lists';
+import PostShare from '../../components/post-share';
 import PostTitle from '../../components/post-title';
 import SectionSeparator from '../../components/section-separator';
 import Tags from '../../components/tags';
@@ -75,9 +76,12 @@ export default function Post({ post, posts, preview }) {
                     categories={post.categories}
                   />
                   <PostBody content={post.content} />
-                  <footer>
+                  <div className="mb-32px">
                     {post.tags.edges.length > 0 && <Tags tags={post.tags} />}
-                  </footer>
+                  </div>
+                  <div className="mb-48px">
+                    <PostShare link={post.slug} title={post.title} />
+                  </div>
                 </main>
                 <article>
                   <SearchInput className="mb-48px max-w-screen-md mx-auto" />
