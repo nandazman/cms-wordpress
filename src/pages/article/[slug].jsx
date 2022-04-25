@@ -5,11 +5,9 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import BreadCrumb from '../../components/breadcrumb';
 import Container from '../../components/container';
-import SearchInput from "../../components/input/search";
 import Layout from '../../components/layout';
 import PostBody from '../../components/post-body';
 import PostHeader from '../../components/post-header';
-import PostLists from '../../components/post-lists';
 import PostShare from '../../components/post-share';
 import PostTitle from '../../components/post-title';
 import Tags from '../../components/tags';
@@ -20,8 +18,8 @@ const PostListByCategory = dynamic(() =>
   import("../../components/post-category-recommend")
 );
 
-const PostCategoryList = dynamic(() =>
-  import("../../components/post-category-list")
+const SideArticle = dynamic(() =>
+  import("../../components/side-article")
 );
 
 export default function Post({ post, posts, preview }) {
@@ -91,19 +89,15 @@ export default function Post({ post, posts, preview }) {
                     <PostShare link={post.slug} title={post.title} />
                   </div>
                   <div className="mb-48px lg:flex hidden">
-                    <PostListByCategory currentId={post.databaseId} category={category} />
+                    <PostListByCategory
+                      currentId={post.databaseId}
+                      category={category}
+                    />
                   </div>
                 </main>
-                <article>
-                  <SearchInput className="mb-48px max-w-screen-md mx-auto" />
-                  <PostCategoryList />
-                  {morePosts.length > 0 && (
-                    <PostLists previewInArticle posts={morePosts} />
-                  )}
-                </article>
+                <SideArticle posts={morePosts} />
               </div>
             </article>
-
           </>
         )}
       </Container>
