@@ -20,6 +20,9 @@ module.exports = {
       large: "12px",
     },
     extend: {
+      animation: {
+        'spin-slow': 'spin 2s linear infinite',
+      },
       spacing: {
         "10px": "10px",
         "15px": "15px",
