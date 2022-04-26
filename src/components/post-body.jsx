@@ -1,7 +1,8 @@
 import cn from "classnames";
-import parse from "html-react-parser";
+import parse, { domToReact } from "html-react-parser";
 import Image from "next/image";
 import Link from "next/link";
+import Accordion from "./accordion";
 import PostBodyVideo from "./post-body-video";
 import styles from './post-body.module.scss';
 
@@ -50,6 +51,10 @@ export default function PostBody({ content }) {
 
             if (attribs.src?.includes("image/png;base64")) {
               return <></>;
+            }
+
+            if (attribs.class === "elementor-toggle-item") {
+              return <Accordion>{children}</Accordion>;
             }
 
             if (
@@ -150,7 +155,7 @@ export default function PostBody({ content }) {
             if (attribs.class === "prettify") {
               return (
                 <span style={{ color: "hotpink" }}>
-                  {domToReact(children, options)}
+                  {domToReact(children)}
                 </span>
               );
             }
