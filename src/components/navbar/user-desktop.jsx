@@ -54,7 +54,12 @@ export default function NavbarUserDesktop() {
                             {sub.subMenu ? (
                               <>
                                 {sub.subMenu.map((item) => (
-                                  <LinkToMea to={item.link} className="p-2.5 text-black hover:bg-light-grey">
+                                  <LinkToMea
+                                    key={item.link}
+                                    label={item.title}
+                                    to={item.link}
+                                    className="p-2.5 text-black hover:bg-light-grey"
+                                  >
                                     {item.title}
                                   </LinkToMea>
                                 ))}

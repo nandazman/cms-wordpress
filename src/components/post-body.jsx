@@ -28,8 +28,8 @@ export default function PostBody({ content }) {
               return;
             }
 
-            if (attribs.class === "elementor-headline") {
-              console.log({ domNode })
+            if (attribs.class === "elementor-image-box-img") {
+              console.log({ domNode });
             }
 
             if (attribs.src?.includes("image/png;base64")) {
