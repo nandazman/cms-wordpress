@@ -28,8 +28,24 @@ export default function PostBody({ content }) {
               return;
             }
 
-            if (attribs.class === "elementor-image-box-img") {
-              console.log({ domNode });
+            if (attribs.class === "elementor-image-box-img" && name === "figure") {
+              const child = domNode.children.find(({ name }) => name === "img");
+              if (!child) return;
+              return (
+                <figure className="elementor-image-box-img w-[30%] mx-auto mb-20px">
+                  <Image
+                    src={child.attribs.src}
+                    alt={child.attribs.alt}
+                    width={child.attribs.width}
+                    height={child.attribs.height}
+                  />
+                </figure>
+              );
+            }
+
+            if (attribs.class === "elementor-image-box-content") {
+              domNode.attribs.class = cn(attribs.class, "text-center");
+              return;
             }
 
             if (attribs.src?.includes("image/png;base64")) {

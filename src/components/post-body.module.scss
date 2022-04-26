@@ -1,5 +1,5 @@
 .content {
-  @apply text-medium leading-relaxed;
+  @apply text-normal leading-relaxed;
   p, ul, ol, blockquote, h2 {
     @apply my-32px text-dark-grey;
   }
@@ -25,6 +25,14 @@
     * {
       @apply text-large text-dark-blue font-semibold leading-snug;
     }
+  }
+
+  h2 {
+    @apply text-large;
+  }
+
+  h3 {
+    @apply text-medium;
   }
 
   p a {
