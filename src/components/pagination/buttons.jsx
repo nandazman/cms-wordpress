@@ -8,7 +8,6 @@ function PaginationButtons({
   onClick,
   limit = 6,
 }) {
-  console.log({ page });
   return (
     <div className={cn("flex gap-2 justify-center", className)}>
       <PaginationButton

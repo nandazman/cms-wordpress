@@ -38,6 +38,7 @@ export default function Index({ allPosts: { edges, pageInfo } }) {
   const [loading, setLoading] = useState(false);
   const [latest, setLatest] = useState([]);
   const router = useRouter();
+  const filterType = filterTypeMap[router.query.filterType];
 
   const onPaginationClick = useCallback(
     (variables, increment) => {
@@ -46,8 +47,15 @@ export default function Index({ allPosts: { edges, pageInfo } }) {
     },
     [pageInfo]
   );
-  const getPost = async (variables, increment) => {
-    const filterType = filterTypeMap[router.query.filterType];
+  const getPost = async (
+    variables = {
+      ...initPagination,
+      filterType,
+      filter: router.query.filter,
+      first: 5,
+    },
+    increment
+  ) => {
     const { edges, pageInfo } = await fetchPostByFilter({
       ...initPagination,
       ...variables,
@@ -58,7 +66,7 @@ export default function Index({ allPosts: { edges, pageInfo } }) {
     setInfo((oldInfo) => {
       return {
         ...pageInfo,
-        page: oldInfo.page + increment,
+        page: increment ? oldInfo.page + increment : 1,
       };
     });
     setLoading(false);
