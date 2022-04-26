@@ -30,7 +30,7 @@ export default function Avatar(data) {
               <></>
             )}
           </div>
-          <div className="text-xl font-bold">{name}</div>
+          <div className="text-xl font-bold capitalize">{name}</div>
         </div>
       </a>
     </Link>

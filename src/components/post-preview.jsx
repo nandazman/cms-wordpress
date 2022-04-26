@@ -114,7 +114,7 @@ export default function PostPreview({
             </p>
             <Link href={`/articles/author/${postAuthor.slug}`}>
               <a className="mb-0 text-dark-blue" aria-label={name}>
-                By <span className="font-bold">{name}</span>
+                By <span className="font-bold capitalize">{name}</span>
               </a>
             </Link>
           </div>
