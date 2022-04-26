@@ -9,7 +9,7 @@ function PaginationButton({ disabled, className, onClick }) {
       type="button"
       onClick={onClick}
       className={cn(
-        "bg-tosca-blue w-8 h-8 rounded flex justify-center items-center",
+        "bg-light-blue w-8 h-8 rounded flex justify-center items-center",
         className,
         {
           "opacity-70": disabled,

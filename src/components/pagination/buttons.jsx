@@ -24,7 +24,7 @@ function PaginationButtons({
           );
         }}
       />
-      <span className="bg-tosca-blue w-8 h-8 text-white text-semi-normal rounded flex justify-center items-center">
+      <span className="bg-light-blue w-8 h-8 text-white text-semi-normal rounded flex justify-center items-center">
         {page}
       </span>
       <PaginationButton
