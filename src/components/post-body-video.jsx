@@ -1,9 +1,9 @@
-import { useAmp } from "next/amp";
+import cn from "classnames";
 import Image from "next/image";
 import styles from "./post-body-video.module.scss";
+import VideoPlayButton from "./video-play-button";
 
-export default function PostBodyVideo({ videoId }) {
-  const isAmp = useAmp();
+export default function PostBodyVideo({ videoId, className }) {
   const player = {};
 
   const initYotube = (id, containerPlaceholder) => {
@@ -44,7 +44,7 @@ export default function PostBodyVideo({ videoId }) {
   };
 
   return (
-    <div className={styles.videoContainer}>
+    <div className={cn(styles.videoContainer, "mx-auto", className)}>
       <div
         className="elementor-video mx-auto w-full"
         id={`youtube-player-${videoId}`}
@@ -57,15 +57,12 @@ export default function PostBodyVideo({ videoId }) {
           height={9}
           layout="responsive"
         />
-        <div
-          className={styles.play}
+        <VideoPlayButton
           onClick={(e) => {
             const containerPlaceholder = e.target.closest(".relative");
             initYotube(videoId, containerPlaceholder);
           }}
-        >
-          <div></div>
-        </div>
+        />
       </div>
     </div>
   );

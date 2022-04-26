@@ -3,6 +3,7 @@ import parse, { domToReact } from "html-react-parser";
 import Image from "next/image";
 import Link from "next/link";
 import Accordion from "./accordion";
+import PostBodyCarousel from "./post-body-carousel";
 import PostBodyVideo from "./post-body-video";
 import styles from './post-body.module.scss';
 
@@ -44,12 +45,22 @@ export default function PostBody({ content }) {
               );
             }
 
+            if (attribs.class === "elementor-carousel-image") {
+            }
+            
+            if (attribs.class === "swiper-wrapper") {
+              return <PostBodyCarousel domNode={domNode} />
+            }
+
             if (attribs.class === "elementor-image-box-content") {
               domNode.attribs.class = cn(attribs.class, "text-center");
               return;
             }
 
-            if (attribs.src?.includes("image/png;base64")) {
+            if (
+              attribs.src?.includes("image/png;base64") ||
+              attribs.class?.includes("elementor-swiper-button")
+            ) {
               return <></>;
             }
 
@@ -128,7 +139,7 @@ export default function PostBody({ content }) {
               const parsedSetting = JSON.parse(setting);
               const videoId = getVideoId(parsedSetting.youtube_url);
               return (
-                <PostBodyVideo videoId={videoId} />
+                <PostBodyVideo className="my-32px" videoId={videoId} />
               );
             }
             if (attribs.class === "elementor-image") {
