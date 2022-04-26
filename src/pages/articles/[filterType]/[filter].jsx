@@ -35,11 +35,13 @@ export default function Index({ allPosts: { edges, pageInfo } }) {
   const [posts, setPosts] = useState(edges);
   const [info, setInfo] = useState({ ...pageInfo, page: 1 });
   const [init, setInit] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [latest, setLatest] = useState([]);
   const router = useRouter();
 
   const onPaginationClick = useCallback(
     (variables, increment) => {
+      setLoading(true);
       getPost(variables, increment);
     },
     [pageInfo]
@@ -59,6 +61,7 @@ export default function Index({ allPosts: { edges, pageInfo } }) {
         page: oldInfo.page + increment,
       };
     });
+    setLoading(false);
   };
 
   const getLatestPost = async () => {
@@ -107,6 +110,7 @@ export default function Index({ allPosts: { edges, pageInfo } }) {
       setInit(false);
       getLatestPost();
     } else {
+      setLoading(true);
       getPost();
     }
   }, [router.query.filter]);
@@ -148,7 +152,7 @@ export default function Index({ allPosts: { edges, pageInfo } }) {
                 </h2>
               </div>
               <div className="mb-32px">
-                <PostLists row posts={posts} />
+                <PostLists loading={loading} row posts={posts} />
               </div>
 
               <PaginationButtons
