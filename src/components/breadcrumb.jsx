@@ -5,7 +5,7 @@ import style from "./breadcrumb.module.scss";
   
 export default function BreadCrumb({ menu, className }) {
   return (
-    <div className={cn(style.breadcrumb, className)}>
+    <div className={cn(style.breadcrumb, className, "text-semi-normal")}>
       {menu.map((item, index) => (
         <Fragment key={index}>
           {item.link ? (
