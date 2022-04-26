@@ -53,6 +53,11 @@ export default function PostBody({ content }) {
               return <></>;
             }
 
+            if (attribs.class === "elementor-toggle") {
+              domNode.attribs.class = "my-32px";
+              return;
+            }
+
             if (attribs.class === "elementor-toggle-item") {
               return <Accordion>{children}</Accordion>;
             }
