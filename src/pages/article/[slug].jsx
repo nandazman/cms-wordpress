@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import ErrorPage from 'next/error';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import Avatar from "../../components/avatar";
 import BreadCrumb from '../../components/breadcrumb';
 import Container from '../../components/container';
 import Layout from '../../components/layout';
@@ -75,8 +76,6 @@ export default function Post({ post, posts, preview }) {
                     link={post.slug}
                     title={post.title}
                     date={post.date}
-                    author={post.author}
-                    categories={post.categories}
                   />
                   <PostBody content={post.content} />
                   <div className="mb-32px">
@@ -90,7 +89,10 @@ export default function Post({ post, posts, preview }) {
                       currentId={post.databaseId}
                       category={category}
                     />
-                  </div>
+                    </div>
+                    <div className="mb-48px">
+                      <Avatar author={post.author} />
+                    </div>
                 </main>
                 <SideArticle posts={morePosts} />
               </div>

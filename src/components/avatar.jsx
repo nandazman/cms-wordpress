@@ -15,8 +15,8 @@ export default function Avatar(data) {
   return (
     <Link href={`/articles/author/${author.slug}`}>
       <a aria-label={name}>
-        <div className="flex items-center">
-          <div className="w-12 h-12 relative mr-4">
+        <div className="flex items-center py-5">
+          <div className="w-20 h-20 relative mr-4">
             {author.avatar.url ? (
               <>
                 <Image
