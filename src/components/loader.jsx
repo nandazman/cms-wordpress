@@ -6,7 +6,7 @@ export default function Loader() {
     <>
       <div className={cn(absoluteClass, "opacity-20 bg-black")}></div>
       <div className={cn(absoluteClass, "flex justify-center items-center")}>
-        <div className="w-24 h-24 animate-spin-slow rounded-full border-[10px] border-light-blue border-b-orange"></div>
+        <div className="w-24 h-24 animate-spin-slow rounded-full border-[10px] border-placeholder-grey border-b-orange"></div>
       </div>
     </>
   );

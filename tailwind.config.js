@@ -21,7 +21,7 @@ module.exports = {
     },
     extend: {
       animation: {
-        'spin-slow': 'spin 2s linear infinite',
+        "spin-slow": "spin 2s linear infinite",
       },
       spacing: {
         "10px": "10px",
@@ -53,7 +53,8 @@ module.exports = {
         orange: "#E87F2F",
         "greyish-blue": "#8692A6",
         "disabled-form": "#F1F2F2",
-        "line-grey": "#E1E1E1"
+        "line-grey": "#E1E1E1",
+        "placeholder-grey": "#A5A5A5",
       },
       borderColor: {
         "greyish-blue": "#8692A6",
