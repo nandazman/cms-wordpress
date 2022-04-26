@@ -19,6 +19,13 @@
     &:hover, &:focus-within {
       .submenu {
         display: flex;
+        .submenuItem {
+          &:hover {
+            .subSubmenu {
+              display: flex;
+            }
+          }
+        }
       }
     }
   }

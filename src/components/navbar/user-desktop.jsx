@@ -30,21 +30,33 @@ export default function NavbarUserDesktop() {
                     {item.subMenu.map((sub, subIndex) => {
                       return (
                         <div
-                          className="bg-white relative py-[11px]"
+                          className={cn(
+                            "bg-white relative py-[11px]",
+                            style.submenuItem
+                          )}
                           key={subIndex}
                         >
                           <LinkToMea
-                            className="text-black font-normal hover:font-semibold"
+                            className={
+                              "text-black font-normal hover:font-semibold"
+                            }
                             id={sub.title}
                             to={sub.link}
                           >
                             {sub.title}
                           </LinkToMea>
-                          <div className="absolute bg-disabled-form">
+                          <div
+                            className={cn(
+                              "absolute bg-disabled-form flex-col w-max top-10 hidden",
+                              style.subSubmenu
+                            )}
+                          >
                             {sub.subMenu ? (
                               <>
                                 {sub.subMenu.map((item) => (
-                                  <span className="p-2.5">{item.title}</span>
+                                  <LinkToMea to={item.link} className="p-2.5 text-black hover:bg-light-grey">
+                                    {item.title}
+                                  </LinkToMea>
                                 ))}
                               </>
                             ) : (
