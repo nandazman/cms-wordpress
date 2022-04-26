@@ -1,8 +1,8 @@
 .nav {
   height: 64px !important;
   position: relative;
-  display: none;
   @media screen and (max-width: 991px) {
+    display: none;
   }
   .navitem {
     @apply h-full flex items-center;

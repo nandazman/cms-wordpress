@@ -19,7 +19,7 @@ export default function UserMobileSubMenu({ item }) {
         {item.title}
       </LinkToMea>
       {item.subMenu ? (
-        <div className="flex flex-col ml-7 transition-all overflow-hidden" style={{ height: open ? 0 : "112px" }}>
+        <div className="flex flex-col ml-7 transition-all overflow-hidden" style={{ height: open ? "112px" : 0 }}>
           {item.subMenu.map((item) => (
             <LinkToMea to={item.link} className="mb-20px text-white">
               {item.title}
