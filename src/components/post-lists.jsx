@@ -1,7 +1,9 @@
+import cn from 'classnames';
 import { memo } from 'react';
+import Loader from './loader';
 import PostPreview from './post-preview';
 
-function PostList({ posts, className, previewInArticle, row }) {
+function PostList({ posts, className, previewInArticle, row, loading }) {
 
   const getClassNameArticle = () => {
     if (previewInArticle) return "gap-y-20px";
@@ -10,7 +12,7 @@ function PostList({ posts, className, previewInArticle, row }) {
   }
   const classNameArticle = getClassNameArticle();
   return (
-    <section className={className || ""}>
+    <section className={cn(className, "relative")}>
       {previewInArticle ? (
         <p className="mb-32px text-large text-dark-blue font-semibold">
           Artikel Terbaru
@@ -34,6 +36,7 @@ function PostList({ posts, className, previewInArticle, row }) {
           />
         ))}
       </div>
+      {loading ? <Loader /> : <></>}
     </section>
   );
 }

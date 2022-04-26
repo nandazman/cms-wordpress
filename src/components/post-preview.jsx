@@ -86,7 +86,7 @@ export default function PostPreview({
           <div className={cn({ "order-2": row })}>
             <div
               className={cn(
-                "text-normal leading-relaxed mb-16px text-dark-grey text-semi-normal",
+                "leading-relaxed mb-16px text-dark-grey text-semi-normal",
                 { "line-clamp-3": row },
                 { "line-clamp-4": !row }
               )}

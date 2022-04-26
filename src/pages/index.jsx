@@ -19,9 +19,11 @@ const initPagination = {
 export default function Index({ allPosts: { edges, pageInfo }, preview }) {
   const [posts, setPosts] = useState(edges);
   const [info, setInfo] = useState({ ...pageInfo, page: 1 });
+  const [loading, setLoading] = useState(false);
 
   const onPaginationClick = useCallback(
     (variables, increment) => {
+      setLoading(true);
       getPost(variables, increment);
     },
     [pageInfo]
@@ -38,6 +40,7 @@ export default function Index({ allPosts: { edges, pageInfo }, preview }) {
         page: oldInfo.page + increment,
       };
     });
+    setLoading(false);
   };
   return (
     <>
@@ -47,7 +50,7 @@ export default function Index({ allPosts: { edges, pageInfo }, preview }) {
         </Head>
         <Container className="mt-30px">
           <SearchInput className="mb-48px max-w-screen-md mx-auto" />
-          <PostLists className="mb-50px" posts={posts} />
+          <PostLists className="mb-50px" loading={loading} posts={posts} />
           <PaginationButtons
             pageInfo={info}
             className="mb-30px"
