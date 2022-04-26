@@ -18,22 +18,27 @@ const initPagination = {
 
 export default function Index({ allPosts: { edges, pageInfo }, preview }) {
   const [posts, setPosts] = useState(edges);
-  const [info, setInfo] = useState(pageInfo);
+  const [info, setInfo] = useState({ ...pageInfo, page: 1 });
 
   const onPaginationClick = useCallback(
-    (variables) => {
-      getPost(variables);
+    (variables, increment) => {
+      getPost(variables, increment);
     },
     [pageInfo]
   );
-  const getPost = async (variables) => {
+  const getPost = async (variables, increment) => {
     const { edges, pageInfo } = await fetchPostForHome({
       ...initPagination,
       ...variables,
     });
     setPosts(edges);
-    setInfo(pageInfo)
-  }
+    setInfo((oldInfo) => {
+      return {
+        ...pageInfo,
+        page: oldInfo.page + increment,
+      };
+    });
+  };
   return (
     <>
       <Layout preview={preview}>

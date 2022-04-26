@@ -4,29 +4,39 @@ import PaginationButton from "./button";
 
 function PaginationButtons({
   className,
-  pageInfo: { hasNextPage, hasPreviousPage, endCursor, startCursor },
+  pageInfo: { hasNextPage, hasPreviousPage, endCursor, startCursor, page },
   onClick,
-  limit = 6
+  limit = 6,
 }) {
+  console.log({ page });
   return (
     <div className={cn("flex gap-2 justify-center", className)}>
       <PaginationButton
         disabled={!hasPreviousPage}
         className="rotate-180"
         onClick={() => {
-          onClick({
-            before: startCursor,
-            last: limit,
-          });
+          onClick(
+            {
+              before: startCursor,
+              last: limit,
+            },
+            -1
+          );
         }}
       />
+      <span className="bg-tosca-blue w-8 h-8 text-white text-semi-normal rounded flex justify-center items-center">
+        {page}
+      </span>
       <PaginationButton
         disabled={!hasNextPage}
         onClick={() => {
-          onClick({
-            after: endCursor,
-            first: limit,
-          });
+          onClick(
+            {
+              after: endCursor,
+              first: limit,
+            },
+            1
+          );
         }}
       />
     </div>

@@ -33,18 +33,18 @@ const filterTypeTranslate = {
 
 export default function Index({ allPosts: { edges, pageInfo } }) {
   const [posts, setPosts] = useState(edges);
-  const [info, setInfo] = useState(pageInfo);
+  const [info, setInfo] = useState({ ...pageInfo, page: 1 });
   const [init, setInit] = useState(true);
   const [latest, setLatest] = useState([]);
   const router = useRouter();
 
   const onPaginationClick = useCallback(
-    (variables) => {
-      getPost(variables);
+    (variables, increment) => {
+      getPost(variables, increment);
     },
     [pageInfo]
   );
-  const getPost = async (variables) => {
+  const getPost = async (variables, increment) => {
     const filterType = filterTypeMap[router.query.filterType];
     const { edges, pageInfo } = await fetchPostByFilter({
       ...initPagination,
@@ -53,7 +53,12 @@ export default function Index({ allPosts: { edges, pageInfo } }) {
       filter: router.query.filter,
     });
     setPosts(edges);
-    setInfo(pageInfo);
+    setInfo((oldInfo) => {
+      return {
+        ...pageInfo,
+        page: oldInfo.page + increment,
+      };
+    });
   };
 
   const getLatestPost = async () => {
@@ -161,14 +166,6 @@ export default function Index({ allPosts: { edges, pageInfo } }) {
     </>
   );
 }
-
-// export async function getStaticProps({ preview = false }) {
-//   const allPosts = await getAllPostByPagination(preview)
-
-//   return {
-//     props: { allPosts, preview },
-//   }
-// }
 
 export async function getServerSideProps({ params }) {
   const filterType = filterTypeMap[params.filterType];
