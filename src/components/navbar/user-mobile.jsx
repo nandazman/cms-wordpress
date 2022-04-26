@@ -15,7 +15,7 @@ export default function NavbarUserMobile() {
           "flex justify-start items-center gap-x-8 px-5"
         )}
       >
-        <span onClick={() => setOpenMenu((o) => !o)}>
+        <span className="cursor-pointer" onClick={() => setOpenMenu((o) => !o)}>
           <BarIcon />
         </span>
         {openMenu ? <NavbarUserMobileMenu onClose={onClose} /> : <></>}

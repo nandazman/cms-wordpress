@@ -1,8 +1,9 @@
+import cn from "classnames";
 import { memo, useState } from "react";
 import { NAVIGATION_MENU } from "../../lib/constants";
 import ChevronIcon from "../icons/chevron";
-import LinkToMea from "../linkToMea";
 import style from "./user-mobile-menu.module.scss";
+import UserMobileSubMenu from "./user-mobile-sub-menu";
 
 function NavbarUserMobileMenu({ onClose }) {
   const [menu, setMenu] = useState({});
@@ -25,10 +26,12 @@ function NavbarUserMobileMenu({ onClose }) {
             <div className={style.menu}>
               {NAVIGATION_MENU.map((item, index) => {
                 return (
-                  <div className={style.menuList} key={index}>
-                    <p className="mb-0" onClick={() => setMenu(item)}>
-                      {item.title}
-                    </p>
+                  <div
+                    className={cn(style.menuList, "cursor-pointer")}
+                    onClick={() => setMenu(item)}
+                    key={index}
+                  >
+                    <p className="mb-0">{item.title}</p>
                     <div className={style.menuIcon}>
                       <ChevronIcon />
                     </div>
@@ -40,7 +43,10 @@ function NavbarUserMobileMenu({ onClose }) {
           {menu.subMenu?.length ? (
             <div style={{ marginLeft: "50px" }}>
               <div className={style.subMenu}>
-                <div className={style.subtitle} onClick={() => setMenu({})}>
+                <div
+                  className={cn(style.subtitle, "cursor-pointer")}
+                  onClick={() => setMenu({})}
+                >
                   <div className="rotate-180">
                     <ChevronIcon />
                   </div>
@@ -48,13 +54,7 @@ function NavbarUserMobileMenu({ onClose }) {
                 </div>
                 <div>
                   {menu.subMenu.map((item) => (
-                    <LinkToMea
-                      className={style.subMenuLink}
-                      id={item.title}
-                      to={item.link}
-                    >
-                      {item.title}
-                    </LinkToMea>
+                    <UserMobileSubMenu item={item} />
                   ))}
                 </div>
               </div>

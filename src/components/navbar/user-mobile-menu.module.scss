@@ -66,12 +66,6 @@
         border-bottom-width: 0.5px;
       }
     }
-    .subMenuLink {
-      @apply text-small font-semibold block;
-      &:not(:last-child) {
-        @apply mb-20px;
-      }
-    }
   }
   .close {
     @apply bg-white absolute;
