@@ -134,3 +134,13 @@
 .wp-block-media-text {
   @apply grid grid-cols-2 gap-4;
 }
+
+.elementor-image {
+  img {
+    @apply mx-auto;
+  }
+}
+
+.elementor-widget-container {
+  @apply mb-32px;
+}

@@ -160,6 +160,26 @@ export default function PostBody({ content }) {
 
               for (let i = 0; i < childs.length; i++) {
                 const child = childs[i];
+                if (child.name === "a") {
+                  const link = child.attribs.href;
+                  const image = child.children.find((item) => item.name === "img");
+                  
+                  return (
+                    <div className="elementor-image text-center mb-32px">
+                      <Link href={link}>
+                        <a>
+                          <Image
+                            src={image.attribs.src}
+                            alt={image.attribs.alt}
+                            width={image.attribs.width}
+                            height={image.attribs.height}
+                            layout="fixed"
+                          />
+                        </a>
+                      </Link>
+                    </div>
+                  );
+                }
                 if (child.name !== "img") continue;
                 src = domNode.childNodes[i].attribs.src;   
                 if (!src) return;
@@ -168,7 +188,7 @@ export default function PostBody({ content }) {
                 const width = domNode.childNodes[i].attribs.width || "720px";
                 const height = domNode.childNodes[i].attribs.height || "480px";
                 return (
-                  <div className="elementor-image text-center">
+                  <div className="elementor-image text-center mb-32px">
                     <Image
                       src={src}
                       alt={alt}

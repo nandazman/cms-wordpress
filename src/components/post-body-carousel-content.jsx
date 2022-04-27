@@ -3,7 +3,6 @@ import { memo } from "react";
 import Carousel from "./carousel/carousel";
 
 function PostBodyCarouselContent({ domNode }) {
-  console.log({ domNode });
   const children = domNode.children.filter((item) => item.type === "tag");
   return (
     <Carousel>
