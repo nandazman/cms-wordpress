@@ -25,7 +25,7 @@ export default function Accordion({ children }) {
                 return (
                   <div
                     {...props}
-                    className="text-tosca-blue font-semibold relative cursor-pointer py-2"
+                    className="text-tosca-blue font-semibold relative cursor-pointer py-2 border-b border-line-grey"
                     onClick={(e) => {
                       e.preventDefault();
                       setOpen((o) => !o);
@@ -50,7 +50,15 @@ export default function Accordion({ children }) {
                 return (
                   <div
                     {...props}
-                    className="overflow-hidden max-h-0 block transition-all"
+                    className={cn(
+                      "overflow-hidden max-h-0 block transition-all",
+                      {
+                        "pt-0": !open,
+                      },
+                      {
+                        "pt-4": open,
+                      }
+                    )}
                     style={{ maxHeight: open ? "1000px" : "" }}
                   >
                     {domToReact(element.tabpanel)}
