@@ -2,7 +2,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { memo, useCallback, useEffect, useState } from "react";
 import { DotButton, NextButton, PrevButton } from "./button";
 
-function EmblaCarousel({ children, onResize, item }) {
+function EmblaCarousel({ children, onResize }) {
   const [viewportRef, embla] = useEmblaCarousel({
     slidesToScroll: 1,
     skipSnaps: false,
@@ -22,8 +22,8 @@ function EmblaCarousel({ children, onResize, item }) {
     [embla]
   );
   const onResizeSize = useCallback(() => {
-    embla && onResize?.(embla, item);
-  }, [embla, item]);
+    embla && onResize?.(embla);
+  }, [embla]);
 
   const onSelect = useCallback(() => {
     if (!embla) return;

@@ -31,19 +31,19 @@ export default function PostBodyCarousel({ domNode }) {
     setShowModal(false);
   });
 
-  const updateCarouselItem = (carouselItem) => {
+  const updateCarouselItem = () => {
     if (!window) return;
 
     const width = window.innerWidth;
-    if (width <= 540 && carouselItem !== 1) {
+    if (width <= 540) {
       setCarouselItem(1);
       return;
     }
-    if (width >= 540 && width < 720 && carouselItem !== 2) {
+    if (width >= 540 && width < 720) {
       setCarouselItem(2);
       return;
     }
-    if (width > 720 && carouselItem !== 3) {
+    if (width > 720) {
       setCarouselItem(3);
       return;
     }
@@ -91,7 +91,7 @@ export default function PostBodyCarousel({ domNode }) {
 
   return (
     <>
-      <Carousel item={carouselItem} onResize={onResize}>
+      <Carousel onResize={onResize}>
         <div className={`embla__container embla__container-${carouselItem}`}>
           {content}
         </div>
