@@ -1,0 +1,6 @@
+.embla__slide {
+  min-width: 33.333%;
+  @media screen and (max-width: 720px) {
+    min-width: 50%;
+  }
+}

@@ -1,15 +1,8 @@
 import useEmblaCarousel from "embla-carousel-react";
-import { useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import { DotButton, NextButton, PrevButton } from "./button";
 
-const images = [
-  "https://media.istockphoto.com/photos/cat-world-picture-id1311993425?b=1&k=20&m=1311993425&s=170667a&w=0&h=vFvrS09vrSeKH_u2XZVmjuKeFiIEjTkwr9KQdyOfqvg=",
-  "https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-  "https://images.theconversation.com/files/443350/original/file-20220131-15-1ndq1m6.jpg?ixlib=rb-1.1.0&rect=0%2C0%2C3354%2C2464&q=45&auto=format&w=926&fit=clip",
-  "https://cdn.pixabay.com/photo/2022/03/27/11/23/cat-7094808__340.jpg",
-];
-
-export default function EmblaCarousel({ children }) {
+function EmblaCarousel({ children, onResize, item }) {
   const [viewportRef, embla] = useEmblaCarousel({
     slidesToScroll: 1,
     skipSnaps: false,
@@ -28,6 +21,9 @@ export default function EmblaCarousel({ children }) {
     (index) => embla && embla.scrollTo(index),
     [embla]
   );
+  const onResizeSize = useCallback(() => {
+    embla && onResize?.(embla, item);
+  }, [embla, item]);
 
   const onSelect = useCallback(() => {
     if (!embla) return;
@@ -41,11 +37,9 @@ export default function EmblaCarousel({ children }) {
     onSelect();
     setScrollSnaps(embla.scrollSnapList());
     embla.on("select", onSelect);
-  }, [embla, setScrollSnaps, onSelect]);
+    embla.on("resize", onResizeSize);
+  }, [embla, setScrollSnaps, onSelect, onResizeSize]);
 
-  embla?.on("resize", () => {
-    // embla.changeOptions({ slidesToScroll });
-  });
 
   return (
     <>
@@ -69,3 +63,4 @@ export default function EmblaCarousel({ children }) {
   );
 };
 
+export default memo(EmblaCarousel)

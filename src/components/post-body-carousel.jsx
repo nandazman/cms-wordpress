@@ -1,17 +1,62 @@
 import { domToReact } from "html-react-parser";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Carousel from "./carousel/carousel";
 import CarouselVideoItem from "./carousel/video-item";
 import Modal from "./modal";
 import PostBodyVideo from "./post-body-video";
 
 export default function PostBodyCarousel({ domNode }) {
+  const getBaseCarouselItem = () => {
+    if (!window) return;
+    const width = window.innerWidth;
+    if (width <= 540) {
+      return 1;
+    }
+    if (width >= 540 && width < 720) {
+      return 2;
+    }
+    if (width > 720) {
+      return 3;
+    }
+  }
   const [showModal, setShowModal] = useState(false);
   const [videoId, setVideoId] = useState("");
+  const [carouselItem, setCarouselItem] = useState(3);
+
+  useEffect(() => {
+    setCarouselItem(getBaseCarouselItem());
+  });
 
   const onHide = useCallback(() => {
     setShowModal(false);
   });
+
+  const updateCarouselItem = (carouselItem) => {
+    if (!window) return;
+
+    const width = window.innerWidth;
+    if (width <= 540 && carouselItem !== 1) {
+      setCarouselItem(1);
+      return;
+    }
+    if (width >= 540 && width < 720 && carouselItem !== 2) {
+      setCarouselItem(2);
+      return;
+    }
+    if (width > 720 && carouselItem !== 3) {
+      setCarouselItem(3);
+      return;
+    }
+  };
+
+  const onResize = useCallback(
+    (embla, item) => {
+      updateCarouselItem(item);
+      embla.reInit();
+    },
+    [carouselItem]
+  );
+  
 
   const content = domNode.children.map((item) => {
     if (item.type === "tag") {
@@ -33,17 +78,24 @@ export default function PostBodyCarousel({ domNode }) {
           />
         );
       }
-      return <div className="embla__slide">{domToReact(item.children)}</div>;
+      return (
+        <div
+          className="embla__slide"
+        >
+          {domToReact(item.children)}
+        </div>
+      );
     }
 
     return <></>;
   });
 
-  domNode.attribs.class = "embla__container";
   return (
     <>
-      <Carousel>
-        <div className="embla__container">{content}</div>
+      <Carousel item={carouselItem} onResize={onResize}>
+        <div className={`embla__container embla__container-${carouselItem}`}>
+          {content}
+        </div>
       </Carousel>
       <Modal show={showModal} onHide={onHide}>
         <div>
@@ -53,3 +105,5 @@ export default function PostBodyCarousel({ domNode }) {
     </>
   );
 }
+
+// export default memo(PostBodyCarousel)

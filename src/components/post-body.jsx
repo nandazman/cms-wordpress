@@ -49,7 +49,11 @@ export default function PostBody({ content }) {
             }
             
             if (attribs.class === "swiper-wrapper") {
-              return <PostBodyCarousel domNode={domNode} />
+              return (
+                <div className="my-32px">
+                  <PostBodyCarousel domNode={domNode} />
+                </div>
+              );
             }
 
             if (attribs.class === "elementor-image-box-content") {

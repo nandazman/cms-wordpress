@@ -25,6 +25,23 @@
   -khtml-user-select: none;
   -webkit-tap-highlight-color: transparent;
   margin-left: -10px;
+  &.embla__container-3 {
+    & > div {
+      min-width: 33.333%
+    }
+  }
+
+  &.embla__container-2 {
+    & > div {
+      min-width: 50%
+    }
+  }
+
+  &.embla__container-1 {
+    & > div {
+      min-width: 100%
+    }
+  }
 }
 
 .embla__slide {
