@@ -144,3 +144,41 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+.swiper-slide {
+  height: 400px;
+  position: relative;
+  .swiper-slide-bg {
+    background-color: #833CA3;
+    height: inherit;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  .swiper-slide-inner {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: inherit;
+    .swiper-slide-contents {
+      padding: 50px;
+      height: 100%;
+      color: white;
+      max-width: 66%;
+      @apply flex items-center justify-center flex-col mx-auto;
+      .elementor-slide-heading {
+        @apply text-h2 font-bold mb-30px text-white;
+      }
+      .elementor-slide-description {
+        @apply text-center mb-30px;
+      }
+      .elementor-button {
+        @apply border-2 border-white;
+      }
+    }
+  }
+}

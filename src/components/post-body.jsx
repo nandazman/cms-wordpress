@@ -3,6 +3,7 @@ import parse, { domToReact } from "html-react-parser";
 import Image from "next/image";
 import Link from "next/link";
 import Accordion from "./accordion";
+import PostBodyContentCarousel from "./post-body-carousel-content";
 import PostBodyMediaCarousel from "./post-body-carousel-media";
 import PostBodyVideo from "./post-body-video";
 import styles from './post-body.module.scss';
@@ -46,6 +47,11 @@ export default function PostBody({ content }) {
             }
 
             if (attribs.class === "swiper-wrapper elementor-slides") {
+              return (
+                <div className="my-32px">
+                  <PostBodyContentCarousel domNode={domNode} />
+                </div>
+              );
             }
             
             if (attribs.class === "swiper-wrapper") {
