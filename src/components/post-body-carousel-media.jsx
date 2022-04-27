@@ -5,7 +5,7 @@ import CarouselVideoItem from "./carousel/video-item";
 import Modal from "./modal";
 import PostBodyVideo from "./post-body-video";
 
-export default function PostBodyCarousel({ domNode }) {
+export default function PostBodyMediaCarousel({ domNode }) {
   const getBaseCarouselItem = () => {
     if (!window) return;
     const width = window.innerWidth;
