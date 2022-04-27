@@ -1,9 +1,11 @@
+import cn from "classnames";
 import { memo } from "react";
 
-function ChevronIcon({ variant }) {
+function ChevronIcon({ className, variant }) {
   if (variant === "rounded") {
     return (
       <svg
+        className={className}
         width="12"
         height="13"
         viewBox="0 0 12 13"
@@ -27,7 +29,7 @@ function ChevronIcon({ variant }) {
   }
   return (
     <svg
-      className="inline"
+      className={cn("inline", className)}
       width="7"
       height="11"
       viewBox="0 0 7 11"
