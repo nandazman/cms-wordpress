@@ -1,30 +1,36 @@
-const API_URL = process.env.WORDPRESS_API_URL
+import axios from "axios";
+
+const API_URL = process.env.WORDPRESS_API_URL;
+
+const instance = axios.create({
+  // withCredentials: true, for token
+  baseURL: API_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
 async function fetchAPI(query, { variables } = {}) {
-  const headers = { 'Content-Type': 'application/json' }
+  const headers = { "Content-Type": "application/json" };
 
   if (process.env.WORDPRESS_AUTH_REFRESH_TOKEN) {
     headers[
-      'Authorization'
-    ] = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`
+      "Authorization"
+    ] = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`;
   }
 
-  const res = await fetch(API_URL, {
-    method: 'POST',
-    headers,
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
-  })
-  const json = await res.json()
-  if (json.errors) {
-    throw new Error('Failed to fetch API')
+  const res = await instance.post("/", {
+    query,
+    variables,
+  });
+
+  if (res.data.errors) {
+    throw new Error("Failed to fetch API");
   }
-  return json.data
+  return res.data.data;
 }
 
-export async function getPreviewPost(id, idType = 'DATABASE_ID') {
+export async function getPreviewPost(id, idType = "DATABASE_ID") {
   const data = await fetchAPI(
     `
     query PreviewPost($id: ID!, $idType: PostIdType!) {
@@ -37,8 +43,8 @@ export async function getPreviewPost(id, idType = 'DATABASE_ID') {
     {
       variables: { id, idType },
     }
-  )
-  return data.post
+  );
+  return data.post;
 }
 
 export async function getAllPostsWithSlug() {
@@ -52,8 +58,8 @@ export async function getAllPostsWithSlug() {
         }
       }
     }
-  `)
-  return data?.posts
+  `);
+  return data?.posts;
 }
 
 export async function getAllPostByPagination(variables) {
@@ -128,14 +134,14 @@ export async function getAllPostByPagination(variables) {
 }
 
 export async function getPostAndMorePosts(slug, preview, previewData) {
-  const postPreview = preview && previewData?.post
+  const postPreview = preview && previewData?.post;
   // The slug may be the id of an unpublished post
-  const isId = Number.isInteger(Number(slug))
+  const isId = Number.isInteger(Number(slug));
   const isSamePost = isId
     ? Number(slug) === postPreview?.id
-    : slug === postPreview?.slug
-  const isDraft = isSamePost && postPreview?.status === 'draft'
-  const isRevision = isSamePost && postPreview?.status === 'publish'
+    : slug === postPreview?.slug;
+  const isDraft = isSamePost && postPreview?.status === "draft";
+  const isRevision = isSamePost && postPreview?.status === "publish";
   const data = await fetchAPI(
     `
     fragment PostFields on Post {
@@ -220,21 +226,21 @@ export async function getPostAndMorePosts(slug, preview, previewData) {
   );
 
   // Draft posts may not have an slug
-  if (isDraft) data.post.slug = postPreview.id
+  if (isDraft) data.post.slug = postPreview.id;
   // Apply a revision (changes in a published post)
   if (isRevision && data.post.revisions) {
-    const revision = data.post.revisions.edges[0]?.node
+    const revision = data.post.revisions.edges[0]?.node;
 
-    if (revision) Object.assign(data.post, revision)
-    delete data.post.revisions
+    if (revision) Object.assign(data.post, revision);
+    delete data.post.revisions;
   }
 
   // Filter out the main post
-  data.posts.edges = data.posts.edges.filter(({ node }) => node.slug !== slug)
+  data.posts.edges = data.posts.edges.filter(({ node }) => node.slug !== slug);
   // If there are still 4 posts, remove the last one
-  if (data.posts.edges.length > 3) data.posts.edges.pop()
+  if (data.posts.edges.length > 3) data.posts.edges.pop();
 
-  return data
+  return data;
 }
 
 export async function getPostByCategory(category, currentId) {
@@ -254,7 +260,7 @@ export async function getPostByCategory(category, currentId) {
   );
 
   return data?.posts;
-} 
+}
 
 export async function getCategories() {
   const data = await fetchAPI(
@@ -273,5 +279,4 @@ export async function getCategories() {
   );
 
   return data?.categories?.edges || [];
-  
 }

@@ -1,16 +1,20 @@
-async function fetchAPI(url, variables) {
-  const headers = { "Content-Type": "application/json" };
+import axios from "axios";
 
-  const res = await fetch(`${url}`, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(variables),
-  });
-  const json = await res.json();
-  if (json.errors) {
+const instance = axios.create({
+  // withCredentials: true, for token
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+async function fetchAPI(url, variables) {
+  const res = await instance.post(`${url}`, variables);
+
+  if (res.errors) {
     throw new Error("Failed to fetch API");
   }
-  return json;
+  
+  return res.data;
 }
 
 export function fetchPostForHome(variables) {
