@@ -2,7 +2,8 @@
   margin-bottom: 20px;
   .elementor-cta__content {
     padding: 35px;
-    @apply text-center bg-orange text-black;
+    background-color: #DAEBFE;
+    @apply text-center text-black;
     .elementor-cta__title {
       @apply text-medium text-black mt-0 mb-20px;
     }
