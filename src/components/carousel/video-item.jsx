@@ -6,9 +6,11 @@ function CarouselVideoItem({ src, children, onClick }) {
   return (
     <>
       <div className="embla__slide">
-        <Image src={src} layout="fill" />
-        {children}
-        <VideoPlayButton onClick={onClick} />
+        <div className="pl-2 w-full h-full relative">
+          <Image src={src} layout="fill" />
+          {children}
+          <VideoPlayButton onClick={onClick} />
+        </div>
       </div>
     </>
   );

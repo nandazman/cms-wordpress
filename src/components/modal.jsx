@@ -1,7 +1,7 @@
 import cn from "classnames";
 import { memo } from "react";
 
-function Modal({ show, children, onHide }) {
+function Modal({ show, children, onHide, widthMaxContent }) {
   if (!show) return <></>;
 
   const fixedClass = "fixed top-0 left-0 w-full h-full";
@@ -12,12 +12,13 @@ function Modal({ show, children, onHide }) {
       <div className={cn(fixedClass, "mx-auto z-50 modal")}>
         <div className="flex justify-center items-center w-full h-full">
           <div
-            className="max-w-3xl w-full mx-auto p-4 relative"
+            className={cn("w-full mx-auto p-4 relative", {
+              "max-w-3xl": !widthMaxContent,
+              "max-w-max": widthMaxContent,
+            })}
             role="content"
           >
-            <div className="bg-white p-2">
-              {children}
-            </div>
+            <div className="bg-white p-2">{children}</div>
             <div
               className="cursor-pointer absolute top-0 right-0 flex items-center justify-center bg-white rounded-full w-24px h-246px"
               onClick={onHide}

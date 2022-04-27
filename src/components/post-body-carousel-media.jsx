@@ -1,11 +1,12 @@
 import { domToReact } from "html-react-parser";
-import { Fragment, useCallback, useEffect, useState } from "react";
+import Image from "next/image";
+import { Fragment, memo, useCallback, useEffect, useState } from "react";
 import Carousel from "./carousel/carousel";
 import CarouselVideoItem from "./carousel/video-item";
 import Modal from "./modal";
 import PostBodyVideo from "./post-body-video";
 
-export default function PostBodyMediaCarousel({ domNode }) {
+function PostBodyMediaCarousel({ domNode }) {
   const getBaseCarouselItem = () => {
     if (!window) return;
     const width = window.innerWidth;
@@ -21,6 +22,7 @@ export default function PostBodyMediaCarousel({ domNode }) {
   }
   const [showModal, setShowModal] = useState(false);
   const [videoId, setVideoId] = useState("");
+  const [imgSrc, setImageSrc] = useState("");
   const [carouselItem, setCarouselItem] = useState(3);
 
   useEffect(() => {
@@ -60,23 +62,42 @@ export default function PostBodyMediaCarousel({ domNode }) {
 
   const content = domNode.children.map((item, key) => {
     if (item.type === "tag") {
-      const video = item.children.find((item) => item.name === "a");
-      if (video) {
-        const image = video.attribs.href;
-        const videoSrc = video.attribs["data-elementor-lightbox-video"];
-        const videoId = videoSrc.split("embed/")[1].split("?")[0];
+      const media = item.children.find((item) => item.name === "a");
+      if (media && media.attribs["data-elementor-open-lightbox"] === "yes") {
+        
+        const image = media.attribs.href;
+        const videoSrc = media.attribs["data-elementor-lightbox-video"];
+        if (videoSrc) {
+          const videoId = videoSrc.split("embed/")[1].split("?")[0];
+          const onClick = useCallback(() => {
+            setShowModal(true);
+            setVideoId(videoId);
+            setImageSrc(null);
+          });
 
+          return (
+            <CarouselVideoItem
+              key={key}
+              onClick={onClick}
+              videoSrc={videoSrc}
+              src={image}
+            />
+          );
+        }
+
+        const src = media.attribs.href;
         const onClick = useCallback(() => {
           setShowModal(true);
-          setVideoId(videoId);
+          setImageSrc(src);
+          setVideoId(null);
         });
+
         return (
-          <CarouselVideoItem
-            key={key}
-            onClick={onClick}
-            videoSrc={videoSrc}
-            src={image}
-          />
+          <div className="embla__slide" key={key}>
+            <div className="pl-2 w-full h-full relative cursor-pointer" onClick={onClick}>
+              <Image src={src} layout="fill" />
+            </div>
+          </div>
         );
       }
       return (
@@ -96,13 +117,20 @@ export default function PostBodyMediaCarousel({ domNode }) {
           {content}
         </div>
       </Carousel>
-      <Modal show={showModal} onHide={onHide}>
+      <Modal widthMaxContent={!!imgSrc} show={showModal} onHide={onHide}>
         <div>
-          <PostBodyVideo videoId={videoId} />
+          {imgSrc ? (
+            <div className="relative">
+              <Image src={imgSrc} width={240} height={200} layout="fixed" />
+            </div>
+          ) : (
+            <></>
+          )}
+          {videoId ? <PostBodyVideo videoId={videoId} /> : <></>}
         </div>
       </Modal>
     </>
   );
 }
 
-// export default memo(PostBodyCarousel)
+export default memo(PostBodyMediaCarousel);
