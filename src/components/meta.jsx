@@ -13,7 +13,7 @@ export default function Meta() {
         content="Komunitas MEA artikel"
       />
       <meta property="og:image" content={HOME_OG_IMAGE_URL} />
-      <link rel="icon" href="https://storage.googleapis.com/smarketing-prod/others/MEA-logo-small.png"></link>
+      <link rel="icon" href="/favicon/logo.png"></link>
     </Head>
   )
 }
