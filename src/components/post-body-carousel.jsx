@@ -1,5 +1,5 @@
 import { domToReact } from "html-react-parser";
-import { useCallback, useEffect, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import Carousel from "./carousel/carousel";
 import CarouselVideoItem from "./carousel/video-item";
 import Modal from "./modal";
@@ -58,7 +58,7 @@ export default function PostBodyCarousel({ domNode }) {
   );
   
 
-  const content = domNode.children.map((item) => {
+  const content = domNode.children.map((item, key) => {
     if (item.type === "tag") {
       const video = item.children.find((item) => item.name === "a");
       if (video) {
@@ -72,6 +72,7 @@ export default function PostBodyCarousel({ domNode }) {
         });
         return (
           <CarouselVideoItem
+            key={key}
             onClick={onClick}
             videoSrc={videoSrc}
             src={image}
@@ -79,15 +80,13 @@ export default function PostBodyCarousel({ domNode }) {
         );
       }
       return (
-        <div
-          className="embla__slide"
-        >
+        <div className="embla__slide" key={key}>
           {domToReact(item.children)}
         </div>
       );
     }
 
-    return <></>;
+    return <Fragment key={key}></Fragment>;
   });
 
   return (
