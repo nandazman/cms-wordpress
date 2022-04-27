@@ -74,9 +74,7 @@ export default function PostPreview({
           <Link href={`/article/${slug}`}>
             <a
               className={cn(
-                "hover:underline text-dark-blue font-medium mb-16px",
-                { "text-normal": !row },
-                { "text-medium": row }
+                "hover:underline text-dark-blue font-medium mb-16px text-normal"
               )}
               dangerouslySetInnerHTML={{ __html: title }}
             ></a>

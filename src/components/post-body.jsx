@@ -38,8 +38,8 @@ export default function PostBody({ content }) {
                   <Image
                     src={child.attribs.src}
                     alt={child.attribs.alt}
-                    width={child.attribs.width}
-                    height={child.attribs.height}
+                    width={child.attribs.width || "216px"}
+                    height={child.attribs.height || "144px"}
                   />
                 </figure>
               );
@@ -158,14 +158,17 @@ export default function PostBody({ content }) {
                 src = domNode.childNodes[i].attribs.src;   
                 if (!src) return;
                 
-                const alt = domNode.childNodes[i].attribs.alt;     
+                const alt = domNode.childNodes[i].attribs.alt;   
+                const width = domNode.childNodes[i].attribs.width || "720px";
+                const height = domNode.childNodes[i].attribs.height || "480px";
                 return (
                   <div className="elementor-image text-center">
                     <Image
                       src={src}
                       alt={alt}
-                      width={domNode.childNodes[i].attribs.width}
-                      height={domNode.childNodes[i].attribs.height}
+                      width={width}
+                      height={height}
+                      layout="responsive"
                     />
                   </div>
                 );
