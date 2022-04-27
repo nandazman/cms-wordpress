@@ -9,7 +9,6 @@ import PostLists from '../../../components/post-lists'
 import PostTitle from '../../../components/post-title'
 import SectionSeparator from '../../../components/section-separator'
 import Tags from '../../../components/tags'
-import { CMS_NAME } from '../../../lib/constants'
 import { getPostAndMorePosts } from "../../../lib/wordpressAPI"
 
 export const config = {
@@ -34,7 +33,7 @@ export default function Post({ post, posts, preview }) {
             <article>
               <Head>
                 <title>
-                  {post.title} | Next.js Blog Example with {CMS_NAME}
+                  Komuntas Mea Artikel | {post.title}
                 </title>
                 <meta
                   property="og:image"

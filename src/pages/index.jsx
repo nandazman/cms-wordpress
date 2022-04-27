@@ -6,7 +6,6 @@ import Layout from '../components/layout';
 import PaginationButtons from "../components/pagination/buttons";
 import PostLists from '../components/post-lists';
 import { fetchPostForHome } from '../lib/api';
-import { CMS_NAME } from '../lib/constants';
 import { getAllPostByPagination } from '../lib/wordpressAPI';
 
 const initPagination = {
@@ -46,7 +45,7 @@ export default function Index({ allPosts: { edges, pageInfo }, preview }) {
     <>
       <Layout preview={preview}>
         <Head>
-          <title>Next.js Blog Example with {CMS_NAME}</title>
+          <title>Komuntas Mea Artikel</title>
         </Head>
         <Container className="mt-30px">
           <SearchInput className="mb-48px max-w-screen-md mx-auto" />
