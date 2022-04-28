@@ -36,3 +36,7 @@ export function fetchPostForRecommendedCategory(variables) {
 export function fetchCategories() {
   return fetchAPI("/api/categories");
 }
+
+export function fetchBanner() {
+  return fetchAPI("/api/banner");
+}

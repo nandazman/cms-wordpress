@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { memo, useEffect, useState } from "react";
-import { fetchBanner } from "../lib/meaAPI";
+import { fetchBanner } from "../lib/api";
 import Carousel from "./carousel/carousel";
 
 function Banner({ className, height = 178 }) {
@@ -12,7 +12,7 @@ function Banner({ className, height = 178 }) {
 
   useEffect(() => {
     getBanner();
-  }, [getBanner]);
+  }, [setBanners]);
 
   if (!banners.length) return <></>;
 
