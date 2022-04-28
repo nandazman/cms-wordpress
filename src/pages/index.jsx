@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import Head from 'next/head';
 import { useCallback, useState } from 'react';
 import Container from '../components/container';
@@ -7,6 +8,8 @@ import PaginationButtons from "../components/pagination/buttons";
 import PostLists from '../components/post-lists';
 import { fetchPostForHome } from '../lib/api';
 import { getAllPostByPagination } from '../lib/wordpressAPI';
+
+const Banner = dynamic(() => import("../components/banner"));
 
 const initPagination = {
   first: null,
@@ -48,6 +51,7 @@ export default function Index({ allPosts: { edges, pageInfo }, preview }) {
           <title>Komuntas Mea Artikel</title>
         </Head>
         <Container className="mt-30px">
+          <Banner className="mb-48px" />
           <SearchInput className="mb-48px max-w-screen-md mx-auto" />
           <PostLists className="mb-50px" loading={loading} posts={posts} />
           <PaginationButtons

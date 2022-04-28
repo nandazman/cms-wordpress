@@ -2,7 +2,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { memo, useCallback, useEffect, useState } from "react";
 import { DotButton, NextButton, PrevButton } from "./button";
 
-function EmblaCarousel({ children, onResize }) {
+function EmblaCarousel({ children, onResize, arrow }) {
   const [viewportRef, embla] = useEmblaCarousel({
     slidesToScroll: 1,
     skipSnaps: false,
@@ -47,8 +47,14 @@ function EmblaCarousel({ children, onResize }) {
         <div className="embla__viewport" ref={viewportRef}>
           {children}
         </div>
-        <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
-        <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
+        {arrow ? (
+          <>
+            <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
+            <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
+          </>
+        ) : (
+          <></>
+        )}
       </div>
       <div className="embla__dots">
         {scrollSnaps.map((_, index) => (
