@@ -3,7 +3,7 @@ import { memo, useEffect, useState } from "react";
 import { fetchBanner } from "../lib/meaAPI";
 import Carousel from "./carousel/carousel";
 
-function Banner({ className }) {
+function Banner({ className, height = 178 }) {
   const [banners, setBanners] = useState([]);
   const getBanner = async () => {
     const response = await fetchBanner();
@@ -22,7 +22,7 @@ function Banner({ className }) {
         <div className="embla__container embla__container-1">
           {banners.map((item, index) => (
             <div className="embla__slide" key={index}>
-              <Image src={item.image} height={178} width={1140} />
+              <Image src={item.image} height={height} width={1140} />
             </div>
           ))}
         </div>
