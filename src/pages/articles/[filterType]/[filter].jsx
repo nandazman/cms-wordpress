@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import BreadCrumb from "../../../components/breadcrumb";
 import Container from "../../../components/container";
+import TreeIcon from "../../../components/icons/tree";
 import Layout from "../../../components/layout";
 import PaginationButtons from "../../../components/pagination/buttons";
 import PostLists from "../../../components/post-lists";
@@ -28,7 +29,7 @@ const filterTypeTranslate = {
   category: "Kategori",
   tag: "Tag",
   author: "Author",
-  search: "Pencarian",
+  search: "Hasil Pencarian",
 };
 
 export default function Index({ allPosts: { edges, pageInfo } }) {
@@ -159,16 +160,35 @@ export default function Index({ allPosts: { edges, pageInfo } }) {
                   {currentMenu}
                 </h2>
               </div>
-              <div className="mb-32px">
-                <PostLists loading={loading} row posts={posts} />
-              </div>
+              {posts.length ? (
+                <>
+                  <div className="mb-32px">
+                    <PostLists loading={loading} row posts={posts} />
+                  </div>
 
-              <PaginationButtons
-                pageInfo={info}
-                className="mb-30px"
-                onClick={onPaginationClick}
-                limit={5}
-              />
+                  <PaginationButtons
+                    pageInfo={info}
+                    className="mb-30px"
+                    onClick={onPaginationClick}
+                    limit={5}
+                  />
+                </>
+              ) : (
+                <div className="text-center px-30px pb-30px mb-32px mb-lg-0 px-lg-0 pb-lg-0">
+                  <div className="mb-32px flex justify-center">
+                    <TreeIcon />
+                  </div>
+                  <div className="max-w-[482px] mx-auto">
+                    <p className="text-medium text-black font-semibold mb-5px">
+                      Tidak ada hasil yang ditemukan
+                    </p>
+                    <p className="mb-0 text-black">
+                      kami tidak dapat menemukan hasil apa pun berdasarkan
+                      pencarian Anda.
+                    </p>
+                  </div>
+                </div>
+              )}
             </main>
 
             <SideArticle posts={latest} />
