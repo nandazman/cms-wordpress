@@ -12,7 +12,7 @@ export default function NavbarUserDesktop() {
         <Container
           className={cn(
             style.nav,
-            "flex justify-center items-center gap-x-8 px-2.5 relative"
+            "flex justify-center items-center gap-x-8 px-2.5"
           )}
         >
           {NAVIGATION_MENU.map((item, index) => {
@@ -78,6 +78,8 @@ export default function NavbarUserDesktop() {
               </div>
             );
           })}
+        </Container>
+        <Container className="relative top-[-64px]">
           <div className="absolute left-5 top-3">
             <LinkToMea to="/">
               <Image
