@@ -92,7 +92,7 @@ export default function PostPreview({
               {parse(excerpt)}
             </div>
             <Link href={`/article/${slug}`}>
-              <a className="text-black text-normal block mb-16px">
+              <a className={cn("text-black text-normal block", { "mb-16px": !row })}>
                 <span className="mr-16px text-semi-normal font-medium">
                   Baca Selengkapnya
                 </span>{" "}
