@@ -46,6 +46,7 @@ function ArticleTabs({ onChangeActiveTab }) {
     const { clientX, scrollX, isScrolling } = scrollData;
     if (!isScrolling) return;
     
+    // will scroll pixel by pixel as mouse still dragging
     ref.current.scrollLeft = (scrollX + e.clientX - clientX) * -1;
     setScrollData((data) => {
       return {
@@ -76,7 +77,7 @@ function ArticleTabs({ onChangeActiveTab }) {
 
   return (
     <div
-      className={cn(style.wrapper, "mb-48px")}
+      className={cn(style.wrapper, "mb-48px mx-lg-48px mx-20px")}
       ref={ref}
       onMouseDown={onMouseDown}
       onMouseUp={onNotDragging}

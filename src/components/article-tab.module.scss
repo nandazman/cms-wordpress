@@ -1,5 +1,5 @@
 .wrapper{
-  @apply overflow-x-scroll mx-[46.5px] select-none;
+  @apply overflow-x-scroll select-none;
   max-width: 1139px;
   &::-webkit-scrollbar {
     display: none;
