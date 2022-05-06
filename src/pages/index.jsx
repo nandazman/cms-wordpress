@@ -37,6 +37,7 @@ export default function Index({ allPosts: { edges, pageInfo }, preview }) {
   );
 
   const onChangeActiveTab = useCallback((activeTab) => {
+    setLoading(true);
     if (activeTab === "artikel-terbaru") {
       getPost({ first: 6 });
       setActiveTab("");
