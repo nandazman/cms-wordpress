@@ -10,6 +10,7 @@ import { fetchPostForHome } from '../lib/api';
 import { getAllPostByPagination } from '../lib/wordpressAPI';
 
 const Banner = dynamic(() => import("../components/banner"));
+const ArticleTabs = dynamic(() => import("../components/article-tabs"));
 
 const initPagination = {
   first: null,
@@ -22,15 +23,30 @@ export default function Index({ allPosts: { edges, pageInfo }, preview }) {
   const [posts, setPosts] = useState(edges);
   const [info, setInfo] = useState({ ...pageInfo, page: 1 });
   const [loading, setLoading] = useState(false);
+  const [activeTab, setActiveTab] = useState("");
 
   const onPaginationClick = useCallback(
     (variables, increment) => {
       setLoading(true);
-      getPost(variables, increment);
+      const filter = activeTab
+        ? { filterType: "categoryName", filter: activeTab }
+        : {};
+      getPost({ ...variables, ...filter }, increment);
     },
-    [pageInfo]
+    [pageInfo, activeTab]
   );
-  const getPost = async (variables, increment) => {
+
+  const onChangeActiveTab = useCallback((activeTab) => {
+    if (activeTab === "artikel-terbaru") {
+      getPost({ first: 6 });
+      setActiveTab("");
+      return;
+    }
+    setActiveTab(activeTab);
+    getPost({ first: 6, filterType: "categoryName", filter: activeTab });
+  })
+  
+  const getPost = async (variables, increment = 0) => {
     const { edges, pageInfo } = await fetchPostForHome({
       ...initPagination,
       ...variables,
@@ -39,7 +55,7 @@ export default function Index({ allPosts: { edges, pageInfo }, preview }) {
     setInfo((oldInfo) => {
       return {
         ...pageInfo,
-        page: oldInfo.page + increment,
+        page: increment ? oldInfo.page + increment : 1,
       };
     });
     setLoading(false);
@@ -53,6 +69,7 @@ export default function Index({ allPosts: { edges, pageInfo }, preview }) {
         <Container className="mt-30px">
           <Banner className="mb-48px" />
           <SearchInput className="mb-48px max-w-screen-md mx-auto" />
+          <ArticleTabs onChangeActiveTab={onChangeActiveTab} />
           <PostLists className="mb-50px" loading={loading} posts={posts} />
           <PaginationButtons
             pageInfo={info}

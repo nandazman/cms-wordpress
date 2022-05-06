@@ -1,0 +1,18 @@
+.wrapper{
+  @apply overflow-x-scroll mx-[46.5px];
+  max-width: 1139px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none; 
+  .tabs {
+    @apply flex w-max;
+    .tab {
+      @apply px-15px font-medium text-dark-blue w-max pb-[5px] cursor-pointer;
+      &.active {
+        @apply border-b-orange border-b-[4px];
+      }
+    }
+  }
+}
