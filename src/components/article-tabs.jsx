@@ -1,5 +1,5 @@
 import cn from "classnames";
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import { fetchCategories } from "../lib/api";
 import style from "./article-tab.module.scss";
 
@@ -15,6 +15,46 @@ const defaultTab = [
 function ArticleTabs({ onChangeActiveTab }) {
   const [data, setData] = useState([]);
   const [activeTab, setActiveTab] = useState("artikel-terbaru");
+  const [scrollData, setScrollData] = useState({
+    isScrolling: false,
+    clientX: 0,
+    scrollX: 0,
+  });
+
+  const ref = useRef();
+
+  const onMouseDown = (e) => {
+    setScrollData((data) => {
+      return {
+        ...data,
+        isScrolling: true,
+        clientX: e.clientX,
+      };
+    });
+  };
+
+  const onNotDragging = () => {
+    setScrollData((data) => {
+      return {
+        ...data,
+        isScrolling: false,
+      };
+    });
+  };
+
+  const onMouseMove = (e) => {
+    const { clientX, scrollX, isScrolling } = scrollData;
+    if (!isScrolling) return;
+    
+    ref.current.scrollLeft = (scrollX + e.clientX - clientX) * -1;
+    setScrollData((data) => {
+      return {
+        ...data,
+        scrollX: data.scrollX + e.clientX - clientX,
+        clientX: e.clientX,
+      };
+    });
+  };
 
   const getCategories = async () => {
     try {
@@ -35,7 +75,14 @@ function ArticleTabs({ onChangeActiveTab }) {
   if (!data.length) return <></>;
 
   return (
-    <div className={cn(style.wrapper, "mb-48px")}>
+    <div
+      className={cn(style.wrapper, "mb-48px")}
+      ref={ref}
+      onMouseDown={onMouseDown}
+      onMouseUp={onNotDragging}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onNotDragging}
+    >
       <div className={style.tabs}>
         {data.map(({ node }) => {
           return (
@@ -45,7 +92,8 @@ function ArticleTabs({ onChangeActiveTab }) {
                 [style.active]: activeTab === node.slug,
               })}
               onClick={() => {
-                setActiveTab(node.slug)
+                if (scrollData.isScrolling || activeTab === node.slug) return;
+                setActiveTab(node.slug);
                 onChangeActiveTab(node.slug);
               }}
             >
